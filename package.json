@@ -1,17 +1,15 @@
 {
-  "name": "riverside.io",
+  "name": "jacoblowe.me",
   "version": "0.0.1",
-  "author"  : "jacobscott",
-  "main"  : "app.coffee",
-  "engines" : {
-    "node"    : "0.8.8",
-    "npm"   :  "1.1.4"
+  "author" : "Jacob Lowe"
+  "private": true,
+  "scripts": {
+    "start": "node app"
   },
   "dependencies": {
     "connect-assets"    : "2.2.1",
-    "coffee-script"     : "latest",
-    "express"           : "3.0.0rc4",
-    "jade"              : "*",
-    "stylus"            : "latest"
+    "express": "3.0.0rc4",
+    "jade": "*",
+    "request": "latest"
   }
 }

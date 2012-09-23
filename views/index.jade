@@ -1,30 +1,33 @@
 extends layout
 
 block content
-  #index
-    h2.center The leadership team.
-    .row.persons
-      .span2.person
-        .center
-          img.face.roundify(src="/images/ben.jpg")
-        h4 Ben Mueller
-        p Danish brownie topping. Topping dessert liquorice jelly beans cheesecake. Wafer lemon drops gingerbread jelly-o cake.
-      .span1.hidden-tablet.hidden-phone &nbsp;
-      .span2.person
-        .center
-          img.face.roundify(src="/images/jacob.jpg")
-        h4 Jacob Lowe
-        p Cookie pie gummies halvah topping liquorice sugar plum bonbon cheesecake. Apple pie sugar plum topping biscuit soufflé brownie liquorice jujubes wypas. Lollipop pastry marzipan. Ma.caroon cupcake jelly beans faworki jelly.
-      .span1.hidden-tablet.hidden-phone &nbsp;
-      .span2.person
-        .center
-          img.face.roundify(src="/images/scott.jpg")
-        h4 Scott Motte
-        p 
-          <a href="http://scottmotte.com">Scott</a> is founder of <a href="http://boxysign.com">BoxySign</a>. He also consults as a software engineer for startups around Southern California. He likes to code in ruby and javascript.
-        
-    hr
-    .center
-      h2 Join Riverside.io
-      p Make a dent in the Inland Empire
-      button.btn.btn-danger.btn-large &nbsp;&nbsp;&nbsp;&nbsp;Apply&nbsp;&nbsp;&nbsp;&nbsp;
+	.row.main
+		.span8.offset2
+			.row
+				.span1.center
+					.profile
+						i.dropdown-toggle(data-toggle="dropdown")
+							img.face(src="//si0.twimg.com/profile_images/2612276969/fGsCaXoz")
+						ul.dropdown-menu.navigation(role="bio")
+							li.item(id="about")
+								a(tabindex="-1", aria-labelledby="dropdownMenu")	About
+					h6 
+						span.title= title
+				.span6
+					h3.tagline.green= tagline
+					.content= content
+	.row.modules.navigation
+		.span8.offset2.center
+			.span2.item(id="projects")
+				h3
+					i.icon-beaker.green
+					span.item-name Projects
+			.span2.item(id="groups")
+				h3
+					i.icon-group.green
+					span.item-name Groups
+			.span2.item(id="contact-info")
+				h3
+					i.icon-envelope-alt.green
+					span.item-name Contact
+	

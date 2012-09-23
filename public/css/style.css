@@ -1,0 +1,101 @@
+body {
+  background: url(../img/patterns/project_paper.png);
+  padding: 80px 0 100px;
+  font: 14px "Quicksand", Helvetica, Arial, sans-serif;
+  text-shadow: 0px 1px 1px rgba(255,255,255,.5);
+}
+
+a {
+  color: #00B7FF;
+}
+
+.blue{
+	color: #00B7FF;
+}
+
+.green{
+	color: #bada55;
+	text-shadow: 0px 1px 0px rgba(0,0,0,.3);
+}
+
+.center{
+	text-align: center;
+}
+
+.face{
+	max-width: 80px;
+	width: 100%;
+	border-radius: 100%;
+	margin: 0 0 15px 0;
+	box-shadow: 0px 1px 2px rgba(0,0,0,.8), inset 0px 1px 10px rgba(255,255,255,.8);
+}
+
+.span8 .span2{
+	width: 29%;
+	margin: 10px 1%;
+}
+
+.modules{
+	background: #fff;
+	border-top: 1px solid #ddd;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.modules .span8 h3 i{
+	line-height: 28px;
+	margin: 0 20px 0 0;
+}
+
+.content-items{
+	list-style-type : none;
+	margin: 0;
+	padding: 0;
+}
+
+.content-items .item{
+	padding: 20px 0;
+	border-bottom: 1px solid #ccc;
+	font-size: 18px;
+	line-height: 18px;
+}
+
+.content-items .item i{
+	margin: 3px 10px;
+	background-image: none;
+}
+
+.profile{
+	position: relative;
+}
+
+.description{
+	margin: 20px;
+}
+
+@media(max-width: 980px){
+	.modules .item{
+		float: left;
+	}
+}
+
+@media(max-width: 768px){
+	.row.main{
+		width:80%;
+		margin: 0 auto;
+	}
+}
+
+@media(max-width: 480px){
+	.modules .item-name{
+		font-size: 14px;
+	}
+}
+
+@media(max-width: 320px){
+	.modules .item-name{
+		visibility: hidden;
+		position: absolute;
+	}
+}
