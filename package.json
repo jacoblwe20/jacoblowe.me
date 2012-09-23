@@ -1,13 +1,13 @@
 {
   "name": "jacoblowe.me",
   "version": "0.0.1",
-  "author" : "Jacob Lowe"
+  "author" : "Jacob Lowe",
   "private": true,
-  "scripts": {
-    "start": "node app"
+  "engines" : {
+    "node"    : "0.6.18",
+    "npm"   :  "1.1.4"
   },
   "dependencies": {
-    "connect-assets"    : "2.2.1",
     "express": "3.0.0rc4",
     "jade": "*",
     "request": "latest"
