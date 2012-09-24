@@ -68,6 +68,9 @@
 	 */
 
 	page.prototype.blur = function(){
+		this.nav.each(function(){
+			$(this).removeClass('current');
+		})
 		this.container.css({"opacity": "0.5"});
 	};
 
@@ -75,6 +78,7 @@
 	 */
 
 	page.prototype.focus = function(){
+		$('#' + this.current).addClass('current');
 		this.container.css({"opacity" : "1"});
 	};
 

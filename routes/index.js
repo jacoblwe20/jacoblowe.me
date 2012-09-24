@@ -60,12 +60,18 @@ exports.api = {
 				{
 					name : "Notify jQuery Plugin",
 					link : "http://redeyeoperations.com/plugins/Notify",
-					icon : "icon-exclamation-sign"
+					icon : "icon-exclamation-sign",
+					desc : {
+						p : 'Notify is a simple notification plugin that is easly acessable and customizable. There is support for many thing like buttons and closing.'
+					}
 				},
 				{
 					name : "Scrollimate jQuery Plugin",
 					link : "http://redeyeoperations.com/plugins/Scrollimate",
-					icon : "icon-cogs"
+					icon : "icon-cogs",
+					desc : {
+						p : 'Scrollimate is a plugin that will animate elements on the page according to the position of the sidebar. It is current still in beta.'
+					}
 				}
 			],
 			success : true
@@ -74,6 +80,16 @@ exports.api = {
 	contact : function(req, res){
 		res.json({
 			results :[
+				{
+					name : "Twitter",
+					link : "https://twitter.com/#!/jacob2dot0",
+					icon : "icon-twitter"
+				},
+				{
+					name : "Github",
+					link : "https://github.com/jacoblwe20",
+					icon : "icon-github"
+				},
 				{
 					name : "ping@jacoblowe.me",
 					link : "mailto:ping@jacoblowe.me",

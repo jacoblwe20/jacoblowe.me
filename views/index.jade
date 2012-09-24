@@ -6,28 +6,32 @@ block content
 			.row
 				.span1.center
 					.profile
-						i.dropdown-toggle(data-toggle="dropdown")
+						i
 							img.face(src="//si0.twimg.com/profile_images/2612276969/fGsCaXoz")
-						ul.dropdown-menu.navigation(role="bio")
-							li.item(id="about")
-								a(tabindex="-1", aria-labelledby="dropdownMenu")	About
 					h6 
 						span.title= title
 				.span6
-					h3.tagline.green= tagline
-					.content= content
+					h2.tagline
+						i.icon-bolt.yellow
+						span.green= tagline
+					.content
+						ul.content-items
+							li.item
+								i.icon-user
+								a.item-title About
+								p.description!= content
 	.row.modules.navigation
-		.span8.offset2.center
+		.span8.centered.center
 			.span2.item(id="projects")
-				h3
+				h4
 					i.icon-beaker.green
 					span.item-name Projects
 			.span2.item(id="groups")
-				h3
+				h4
 					i.icon-group.green
 					span.item-name Groups
 			.span2.item(id="contact-info")
-				h3
+				h4
 					i.icon-envelope-alt.green
 					span.item-name Contact
 	
