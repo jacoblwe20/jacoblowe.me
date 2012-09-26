@@ -11,16 +11,12 @@ h2,.item-title{
 	font-weight: 400;
 }
 
+i{
+	background: none!important;
+}
+
 h4{
 	font-weight: 400;
-}
-
-a {
-  color: ##12C;
-}
-
-.blue{
-	color: ##12C;
 }
 
 .green{
@@ -29,6 +25,14 @@ a {
 
 .yellow{
 	color: #f89b00;
+}
+
+.red{
+	color: #DD4B39;
+}
+
+.grey{
+	color: #999;
 }
 
 .center{
@@ -41,37 +45,43 @@ a {
 }
 
 .face{
-	max-width: 80px;
+	max-width: 48px;
 	width: 100%;
 	border-radius: 100%;
 	margin: 0 0 15px 0;
 	box-shadow: 0px 1px 2px rgba(0,0,0,.8), inset 0px 1px 10px rgba(255,255,255,.8);
 }
 
-.span8 .span2{
-	width: 29%;
-	margin: 10px 1%;
-}
-
 .modules{
 	background: #fff;
-	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	position: fixed;
-	bottom: 0;
+	top: 0px;
+	box-shadow: 0px 1px 10px rgba(255,255,255,.5);
 	left: 0;
 	right: 0;
+}
+
+.modules .items{
+	display: -webkit-box; 
+	-webkit-box-align: stretch; 
+	-webkit-box-orient: horizontal;
+	width: 80%;
+}
+
+.modules .item{
+	-webkit-box-flex: 1;
+	padding: 10px 0;
 }
 
 .icon-bolt{
 	margin: 12px;
 }
 
-.modules .span8 h3{
-	line-height: 24px;
-}
-.modules .span8 h4 i{
+
+.modules .items h4 i{
 	line-height: 28px;
-	margin: 0 20px 0 0;
+	margin: 0 10px 0 0;
 }
 
 .content-items{
@@ -81,10 +91,18 @@ a {
 }
 
 .content-items .item{
-	padding: 20px 0;
-	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
 	font-size: 18px;
-	line-height: 18px;
+	line-height: 22px;
+	border-bottom: 1px solid #ddd;
+}
+
+.modules .item{
+	border-top: 0px solid #ccc;
+}
+
+.modules .item h4{
+	color: #444;
 }
 
 .content-items .item i{
@@ -92,24 +110,50 @@ a {
 	background-image: none;
 }
 
+.content-items ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 20px;
+}
+
+.content-items ul li{
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
+
+}
+
 .profile{
 	position: relative;
 }
 
 .description{
-	margin: 20px;
+	margin: 20px 20px 10px 20px;
 }
 
 .current.item{
-	background: #efefef;
-	box-shadow: inset 0px 1px 2px rgba(0,0,0,.3);
-	border-radius: 20px;
+	border-top-width: 5px;
+	margin-bottom: -5px;
+}
+
+.current h4{
+	margin-top: 5px;
+}
+
+.current i {
+	color: #DD4B39;
 }
 
 @media(max-width: 980px){
-	.modules .item{
-		float: left;
+
+	.modules{
+		border-top: 1px solid #ddd;
+		top: auto;
+		bottom: -1px;
+		box-shadow: 0px -1px 10px rgba(255,255,255,.5);
+		left: 0;
+		right: 0;
 	}
+	
 }
 
 @media(max-width: 768px){
@@ -122,30 +166,16 @@ a {
 		margin: 0 auto;
 	}
 
-	.modules .span8{
-		display: table;
-		width: auto;
-	}
-
-	.modules .span8 .item{
-		padding: 0 10px;
-		float: left;
-	}
-
-	.modules .span8 .item i{
+	.modules .items h4 i{
 		margin: 0;
 	}
+	.modules .item-name{
+		display: none;
+	}
+
+
+
 }
 
-@media(max-width: 480px){
-	.modules .item-name{
-		font-size: 14px;
-	}
-}
 
-@media(max-width: 320px){
-	.modules .item-name{
-		visibility: hidden;
-		position: absolute;
-	}
-}
+

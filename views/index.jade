@@ -2,36 +2,42 @@ extends layout
 
 block content
 	.row.main
-		.span8.offset2
+		.span10.offset1
 			.row
 				.span1.center
 					.profile
 						i
-							img.face(src="//si0.twimg.com/profile_images/2612276969/fGsCaXoz")
+							img.face(src=image)
 					h6 
 						span.title= title
-				.span6
+					
+				.span8
 					h2.tagline
 						i.icon-bolt.yellow
 						span.green= tagline
 					.content
-						ul.content-items
-							li.item
-								i.icon-user
-								a.item-title About
-								p.description!= content
+						
+						
 	.row.modules.navigation
-		.span8.centered.center
-			.span2.item(id="projects")
+		.centered.center.items
+			.item.current(id="about")
 				h4
-					i.icon-beaker.green
+					i.icon-user.grey
+					span.item-name About
+			.item(id="projects")
+				h4
+					i.icon-beaker.grey
 					span.item-name Projects
-			.span2.item(id="groups")
+			.item(id="groups")
 				h4
-					i.icon-group.green
+					i.icon-group.grey
 					span.item-name Groups
-			.span2.item(id="contact-info")
+			//- .item(id="twitter")
+			//- 	h4
+			//- 		i.icon-twitter.grey
+			//- 		span.item-name Twitter
+			.item(id="contact-info")
 				h4
-					i.icon-envelope-alt.green
+					i.icon-envelope-alt.grey
 					span.item-name Contact
 	

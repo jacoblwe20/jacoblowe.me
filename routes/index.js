@@ -3,6 +3,20 @@
  * GET home page.
  */
 
+var request = require('request'),
+	tw_user = 'jacob2dot0',
+	linkify = function(str){
+		return str.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
+			return url.link(url);
+		}).replace(/[@]+[A-Za-z0-9-_]+/g, function(u) {
+			var username = u.replace("@","")
+			return u.link("http://twitter.com/"+username);
+		}).replace(/[#]+[A-Za-z0-9-_]+/g, function(t) {
+			var tag = t.replace("#","%23")
+			return t.link("http://search.twitter.com/search?q="+tag);
+		});
+	};
+
 exports.index = function(req, res){
   res.render('index');
 };
@@ -60,7 +74,7 @@ exports.api = {
 				{
 					name : "Notify jQuery Plugin",
 					link : "http://redeyeoperations.com/plugins/Notify",
-					icon : "icon-exclamation-sign",
+					icon : "icon-warning-sign",
 					desc : {
 						p : 'Notify is a simple notification plugin that is easly acessable and customizable. There is support for many thing like buttons and closing.'
 					}
@@ -102,5 +116,40 @@ exports.api = {
 			success : true
 		});
 
+	},
+	twitter : function(req, res){
+		request('http://api.twitter.com/1/statuses/user_timeline.json?count=10&screen_name='+tw_user, function(error, response, body){
+        if(error){
+            console.log(error);
+            callback(error);
+        }else if(response.statusCode == 200){
+
+
+            var twts = JSON.parse(body),
+            	compiled = '<ul>';
+            	newRes = {
+            		name : 'Tweets',
+            		link : 'https://twitter.com/#!/' + tw_user,
+            		icon : 'icon-twitter'
+            	};
+
+            for(var i in twts){
+
+            	compiled += '<li><i class="icon-comment"></i>'+linkify(twts[i].text) + '<br><small><a href=https://twitter.com/'+tw_user+'/status/'+twts[i].id+'>details</a></small>';
+            		
+            }
+
+            compiled += '</ul>';
+
+            newRes.desc = {
+            	p : compiled
+            }
+
+            res.json({success: true, results : newRes});
+
+
+        }
+
+    });
 	}
 };

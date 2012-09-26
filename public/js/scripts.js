@@ -84,9 +84,9 @@
 
 	$.get('/partials/list.html', function(data){  
 		var thisPage = new page('about', $('.content'), $('.navigation').find('.item'));
+
+		thisPage.get('about');
 		listTemp = data;
 	});
-
-	$('.dropdown-toggle').dropdown();
 
 }(jQuery))
