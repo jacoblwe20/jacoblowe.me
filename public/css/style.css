@@ -60,17 +60,25 @@ h4{
 	box-shadow: 0px 1px 10px rgba(255,255,255,.5);
 	left: 0;
 	right: 0;
+	text-align: center;
 }
 
 .modules .items{
 	display: -webkit-box; 
+	display: -moz-box; 
+	display: flexbox;
 	-webkit-box-align: stretch; 
 	-webkit-box-orient: horizontal;
+	-moz-box-align: stretch; 
+	-moz-box-orient: horizontal;
+	box-align: stretch; 
+	box-orient: horizontal;
 	width: 80%;
 }
 
 .modules .item{
 	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
 	padding: 10px 0;
 }
 
