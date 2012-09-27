@@ -31,6 +31,7 @@ exports.api = {
 	},
 	groups : function(req, res){
 		res.json({
+			title : 'Groups & Meetups',
 			results : [
 				{
 					name : "riverside.js",
@@ -41,11 +42,19 @@ exports.api = {
 					}
 				},
 				{
-					name : "riverside.io",
+					name : "Riverside.io",
 					link : "http://riverside.io",
 					icon : "icon-certificate",
 					desc : {
 						p : 'Where people from all over the Inland Empire come to learn how to code, design & ship web apps.'
+					}
+				},
+				{
+					name : 'StartupIE',
+					link : 'http://www.meetup.com/startupie/',
+					icon : 'icon-briefcase',
+					desc : {
+						p : 'Through monthly events we want to help bring together the burgeoning tech startup community here in the Inland Empire, CA. If you are interested in tech entrepreneurship, have an idea for a great startup company, want to work at a startup or just want to network with people, this is the group to join.'
 					}
 				}
 			],
@@ -54,6 +63,7 @@ exports.api = {
 	},
 	projects : function(req, res){
 		res.json({
+			title : 'Projects & Plugins',
 			results : [
 				{
 					name : "Zoomy jQuery Plugin",
@@ -65,10 +75,18 @@ exports.api = {
 				},
 				{
 					name : "Zoomy Wordpress Plugin",
-					link : "http://zoomy.me/wordpress",
+					link : "http://zoomy.me/wordpress.html",
 					icon : "icon-zoom-in",
 					desc : {
 						p : 'Zoomy Wordpress Plugin is a plugin built for Wordpress that allows you to use Zoomy inside of your blog'
+					}
+				},
+				{
+					name : 'Redeyeoperations.com',
+					link : 'http://redeyeoperations.com',
+					icon : 'icon-rss',
+					desc : {
+						p : 'Redeyeoperations.com is a blog that a write for and run. This site also is a harbor for some of my older design and development work.'
 					}
 				},
 				{
@@ -93,6 +111,7 @@ exports.api = {
 	},
 	contact : function(req, res){
 		res.json({
+			title : 'Get In Contact',
 			results :[
 				{
 					name : "Twitter",
@@ -103,6 +122,11 @@ exports.api = {
 					name : "Github",
 					link : "https://github.com/jacoblwe20",
 					icon : "icon-github"
+				},
+				{
+					name : 'Google +',
+					link : 'https://plus.google.com/102589001946394459745/',
+					icon : 'icon-google-plus-sign'
 				},
 				{
 					name : "ping@jacoblowe.me",
@@ -151,5 +175,29 @@ exports.api = {
         }
 
     });
+	},
+	blog : function(req, res){
+		request('http://redeyeoperations.com/?json=1&count=1', function(error, response, body){
+
+			var posts = JSON.parse(body).posts;
+				output = [];
+
+			for(var i in posts){
+				var post = posts[i];
+
+				output.push({
+					name : post.title_plain,
+					link : post.url,
+					icon : 'icon-share-alt',
+					desc : {
+						p : post.content
+					}
+				})
+
+			}
+
+			res.json({results : output, success : true});
+
+		})
 	}
 };

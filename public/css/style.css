@@ -6,6 +6,11 @@ body {
   overflow-y: scroll;
 }
 
+h1{
+	color: #444;
+	margin-top: 30px;
+}
+
 h2,.item-title{
 	font-family: "Cutive";
 	font-weight: 400;
@@ -67,6 +72,9 @@ h4{
 	display: -webkit-box; 
 	display: -moz-box; 
 	display: flexbox;
+	/*Not quite working*/
+	/*display: -webkit-flex;
+	display: flex;*/
 	-webkit-box-align: stretch; 
 	-webkit-box-orient: horizontal;
 	-moz-box-align: stretch; 
@@ -79,6 +87,7 @@ h4{
 .modules .item{
 	-webkit-box-flex: 1;
 	-moz-box-flex: 1;
+	flex: 1;
 	padding: 10px 0;
 }
 
@@ -90,6 +99,14 @@ h4{
 .modules .items h4 i{
 	line-height: 28px;
 	margin: 0 10px 0 0;
+}
+
+.content{
+	-webkit-transition: opacity .3s ease-in .2s;
+	-moz-transition: opacity .3s ease-in .2s;
+	-o-transition: opacity .3s ease-in .2s;
+	-ms-transition: opacity .3s ease-in .2s;
+	transition: opacity .3s ease-in .2s;
 }
 
 .content-items{
@@ -105,12 +122,31 @@ h4{
 	border-bottom: 1px solid #ddd;
 }
 
+.content-items .item:hover i{
+	color: #f89b00;
+	-webkit-transition: color .3s ease-in .2s;
+	-moz-transition: color .3s ease-in .2s;
+	-o-transition: color .3s ease-in .2s;
+	-ms-transition: color .3s ease-in .2s;
+	transition: color .3s ease-in .2s;
+}
+
 .modules .item{
 	border-top: 0px solid #ccc;
+	-webkit-transition: all .3s ease-in .2s;
+	-moz-transition: all .3s ease-in .2s;
+	-o-transition: all .3s ease-in .2s;
+	-ms-transition: all .3s ease-in .2s;
+	transition: all .3s ease-in .2s;
 }
 
 .modules .item h4{
 	color: #444;
+	-webkit-transition: margin-top .3s ease-in .2s;
+	-moz-transition: margin-top .3s ease-in .2s;
+	-o-transition: margin-top .3s ease-in .2s;
+	-ms-transition: margin-top .3s ease-in .2s;
+	transition: margin-top .3s ease-in .2s;
 }
 
 .content-items .item i{

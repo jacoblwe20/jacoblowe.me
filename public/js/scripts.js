@@ -70,7 +70,7 @@
 	page.prototype.blur = function(){
 		this.nav.each(function(){
 			$(this).removeClass('current');
-		})
+		});
 		this.container.css({"opacity": "0.5"});
 	};
 
