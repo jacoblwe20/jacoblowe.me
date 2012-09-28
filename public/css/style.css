@@ -24,6 +24,10 @@ h4{
 	font-weight: 400;
 }
 
+.blue{
+	color: #08C;
+}
+
 .green{
 	color: #093;
 }
@@ -187,6 +191,55 @@ h4{
 	color: #DD4B39;
 }
 
+.status-update{
+	position: absolute;
+	width: 300px;
+	padding: 10px 10px 20px;
+	border-radius: 10px;
+	border: 1px solid #ddd;
+	background: #fff;
+	box-shadow: 0px 1px 2px rgba(0,0,0,.3);
+	top: 110%;
+	left: -600%;
+	text-align: left;
+	opacity: 0;
+	-webkit-transition: opacity .5s ease-in, top .5s ease-in-out, left 0s ease-in .5s;
+	-moz-transition: opacity .5s ease-in, top .5s ease-in-out, left 0s ease-in .5s;
+	-o-transition: opacity .5s ease-in, top .5s ease-in-out, left 0s ease-in .5s;
+	-ms-transition: opacity .5s ease-in, top .5s ease-in-out, left 0s ease-in .5s;
+	transition: opacity .5s ease-in, top .5s ease-in-out, left 0s ease-in .5s;
+}
+
+.triangle{
+	position: absolute;
+	top: 0;
+	left: 25px;
+	width: 0;
+	height:  0;
+	border-width: 10px;
+	border-color: transparent transparent #fff transparent;
+	border-style: solid;
+	margin-top: -20px;
+}
+
+.status-update i{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 10px;
+}
+
+.show.status-update{
+	top: 100%;
+	opacity: 1;
+	left: 0%;
+	-webkit-transition: opacity .3s ease-in, top .5s ease-in-out, left 0s;
+	-moz-transition: opacity .3s ease-in, top .5s ease-in-out, left 0s;
+	-o-transition: opacity .3s ease-in, top .5s ease-in-out, left 0s;
+	-ms-transition: opacity .3s ease-in, top .5s ease-in-out, left 0s;
+	transition: opacity .3s ease-in, top .5s ease-in-out, left 0s;
+}
+
 @media(max-width: 980px){
 
 	.modules{
@@ -203,6 +256,19 @@ h4{
 @media(max-width: 768px){
 	body{
 		padding: 20px 0 100px;
+	}
+
+	.status-update{
+		margin-left: -150px;
+	}
+
+	.show.status-update{
+		left: 50%;
+	}
+
+	.triangle{
+		left: 50%;
+		margin-left: -20px;
 	}
 
 	.row.main{
