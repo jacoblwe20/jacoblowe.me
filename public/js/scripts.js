@@ -7,6 +7,7 @@
 	   */
 		page = function(start, container, nav){
 
+			this.cache = {};
 			this.current = start;
 			this.container = container;
 			this.nav = nav;
@@ -32,19 +33,28 @@
 
 	page.prototype.load = function(url, callback){
 		var that =  this;
-		$.ajax({
-			url : url,
-			type : 'GET',
-			dataType : 'json',
-			error : function(err){
-				alert('Error');
-				that.focus();
-			},
-			success : function(res){
-				//console.log(res);
-				callback(res);
-			}
-		});
+
+		if(typeof this.cache[url] === 'undefined'){
+
+			$.ajax({
+				url : url,
+				type : 'GET',
+				dataType : 'json',
+				error : function(err){
+					alert('Error');
+					that.focus();
+				},
+				success : function(res){
+					callback(res);
+					that.cache[url] = res;
+				}
+			});
+
+		}else{
+
+			callback(this.cache[url]);
+
+		}
 	};
 
 	/* @method 	get 			Function 	-  Event to get a new page, also handles states

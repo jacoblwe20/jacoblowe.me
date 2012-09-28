@@ -159,6 +159,10 @@ exports.api = {
 
             for(var i in twts){
 
+            	if(i === 0){
+            		app.locals.update = linkify(twt[i].text);
+            	}
+
             	compiled += '<li><i class="icon-comment"></i>'+linkify(twts[i].text) + '<br><small><a href=https://twitter.com/'+tw_user+'/status/'+twts[i].id+'>details</a></small>';
             		
             }

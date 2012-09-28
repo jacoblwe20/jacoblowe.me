@@ -21,13 +21,15 @@ request('http://api.twitter.com/1/statuses/user_timeline.json?count=1&screen_nam
       console.log(error);
       callback(error);
   }else if(response.statusCode == 200){
-      var user = JSON.parse(body)[0].user;
+      var result = JSON.parse(body)[0],
+        user = result.user;
 
       console.log('recieved information');
 
       app.locals.title = user.name;
       app.locals.image = user.profile_image_url;
       app.locals.location = user.location;
+      app.locals.update = result.text;
 
   }
 });
