@@ -1,9 +1,20 @@
+
+/*            __   __   __        __        ___         ___ 
+ *    |  /\  /  ` /  \ |__) |    /  \ |  | |__    |\/| |__  
+ * \__/ /~~\ \__, \__/ |__) |___ \__/ |/\| |___ . |  | |___ 
+ *
+ * Author : Jacob Lowe
+ * Please feel free to copy use or distribute and code in this file :-)
+ *
+ */
+
+
 (function($){
 
 	var listTemp = null,
-	  /* @Object 	page 			Function 	- Helper to keep track and load new pages
-	   * @param 	start 		String 		- String that hold the current pages name or the start pages name
-	   * @param 	container Object 		- Jquery object, from selector	
+	  /* @Object 	page 			{Function} 	- Helper to keep track and load new pages
+	   * @param 	start 		{String} 		- String that hold the current pages name or the start pages name
+	   * @param 	container {Object} 		- Jquery object, from selector	
 	   */
 		page = function(start, container, nav){
 
@@ -26,9 +37,9 @@
 
 		};
 
-	/* @method 	load 			Function 	- Load new content  	
-	 * @param 	url 			String 		- Url to load information from
-	 * @param 	callback 	Function 	- Function to pass data to
+	/* @method 	load 			{Function} 	- Load new content  	
+	 * @param 	url 			{String} 		- Url to load information from
+	 * @param 	callback 	{Function} 	- Function to pass data to
 	 */
 
 	page.prototype.load = function(url, callback){
@@ -57,8 +68,8 @@
 		}
 	};
 
-	/* @method 	get 			Function 	-  Event to get a new page, also handles states
-	 * @param 	pageName 	String 		-  String of the page name
+	/* @method 	get 			{Function} 	-  Event to get a new page, also handles states
+	 * @param 	pageName 	{String} 		-  String of the page name
 	 */
 
 	page.prototype.get = function(pageName){
@@ -74,7 +85,7 @@
 
 	};
 
-	/* @method 	blur 	Function 	- Remove focus to container
+	/* @method 	blur 	{Function} 	- Remove focus to container
 	 */
 
 	page.prototype.blur = function(){
@@ -84,7 +95,7 @@
 		this.container.css({"opacity": "0.5"});
 	};
 
-	/* @method 	active 	Function 	- Adds focus to container
+	/* @method 	active 	{Function} 	- Adds focus to container
 	 */
 
 	page.prototype.focus = function(){
