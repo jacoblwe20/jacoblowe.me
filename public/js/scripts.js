@@ -1,18 +1,28 @@
+
+/*            __   __   __        __        ___         ___ 
+ *    |  /\  /  ` /  \ |__) |    /  \ |  | |__    |\/| |__  
+ * \__/ /~~\ \__, \__/ |__) |___ \__/ |/\| |___ . |  | |___ 
+ *
+ * Author : Jacob Lowe
+ * Please feel free to copy use or distribute and code in this file :-)
+ *
+ */
+
+
 (function($){
 
 	var listTemp = null,
-	  /* @Object 	page 			Function 	- Helper to keep track and load new pages
-	   * @param 	start 		String 		- String that hold the current pages name or the start pages name
-	   * @param 	container Object 		- Jquery object, from selector	
+	  /* @Object 	page 			{Function} 	- Helper to keep track and load new pages
+	   * @param 	start 		{String} 		- String that hold the current pages name or the start pages name
+	   * @param 	container {Object} 		- Jquery object, from selector	
 	   */
 		page = function(start, container, nav){
 
+			this.cache = {};
 			this.current = start;
 			this.container = container;
 			this.nav = nav;
-			this.temp = function(){
 
-			}
 			var that = this;
 
 			this.nav.each(function(){
@@ -25,30 +35,39 @@
 
 		};
 
-	/* @method 	load 			Function 	- Load new content  	
-	 * @param 	url 			String 		- Url to load information from
-	 * @param 	callback 	Function 	- Function to pass data to
+	/* @method 	load 			{Function} 	- Load new content  	
+	 * @param 	url 			{String} 		- Url to load information from
+	 * @param 	callback 	{Function} 	- Function to pass data to
 	 */
 
 	page.prototype.load = function(url, callback){
 		var that =  this;
-		$.ajax({
-			url : url,
-			type : 'GET',
-			dataType : 'json',
-			error : function(err){
-				alert('Error');
-				that.focus();
-			},
-			success : function(res){
-				//console.log(res);
-				callback(res);
-			}
-		});
+
+		if(typeof this.cache[url] === 'undefined'){
+
+			$.ajax({
+				url : url,
+				type : 'GET',
+				dataType : 'json',
+				error : function(err){
+					alert('Error');
+					that.focus();
+				},
+				success : function(res){
+					callback(res);
+					that.cache[url] = res;
+				}
+			});
+
+		}else{
+
+			callback(this.cache[url]);
+
+		}
 	};
 
-	/* @method 	get 			Function 	-  Event to get a new page, also handles states
-	 * @param 	pageName 	String 		-  String of the page name
+	/* @method 	get 			{Function} 	-  Event to get a new page, also handles states
+	 * @param 	pageName 	{String} 		-  String of the page name
 	 */
 
 	page.prototype.get = function(pageName){
@@ -64,17 +83,17 @@
 
 	};
 
-	/* @method 	blur 	Function 	- Remove focus to container
+	/* @method 	blur 	{Function} 	- Remove focus to container
 	 */
 
 	page.prototype.blur = function(){
 		this.nav.each(function(){
 			$(this).removeClass('current');
-		})
+		});
 		this.container.css({"opacity": "0.5"});
 	};
 
-	/* @method 	active 	Function 	- Adds focus to container
+	/* @method 	active 	{Function} 	- Adds focus to container
 	 */
 
 	page.prototype.focus = function(){
@@ -88,5 +107,91 @@
 		thisPage.get('about');
 		listTemp = data;
 	});
+
+}(jQuery));
+
+
+
+(function($){
+
+	var container = $('.profile'),
+			status = container.find('i').data('update');
+			StatusUpdate = function(container, status){
+
+		  	this.status = status;
+		  	this.container = container;
+
+		  	this.show = function(){
+
+		  		this.status_bub.addClass('show');
+
+		  	};
+
+		  	this.hide = function(){
+
+		  		this.status_bub.removeClass('show');
+
+		  	};
+
+		  	this.linkify = function(str){
+					return str.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
+						return url.link(url);
+					}).replace(/[@]+[A-Za-z0-9-_]+/g, function(u) {
+						var username = u.replace("@","")
+						return u.link("http://twitter.com/"+username);
+					}).replace(/[#]+[A-Za-z0-9-_]+/g, function(t) {
+						var tag = t.replace("#","%23")
+						return t.link("http://search.twitter.com/search?q="+tag);
+					});
+				};
+
+		  	this.construct = function(){
+
+		  		var temp = '<div class="status-update"><i class="icon-twitter blue"></i><div class="triangle"></div><p>{{{status}}}</p></div>';
+
+		  		this.status_bub = $(Mustache.render(temp, {status : this.linkify(this.status)}));
+
+		  		this.container.prepend(this.status_bub).css({display:'block', position: 'relative'});
+
+		  		this.events();
+
+		  	};
+
+		  	this.events = function(){
+
+		  		var that = this,
+		  			outerClick = function(){
+		  				$('html').bind('click', function(){
+		  					that.container.find('i').trigger('click');
+		  					unbind();
+		  				});
+
+		  				that.status_bub.bind('click', function(e){
+		  					e.stopPropagation();
+		  				})
+
+		  			},
+		  			unbind = function(){
+		  				$('html').unbind('click');
+		  				that.status_bub.unbind('click');
+		  			};
+
+		  		this.container.find('i').toggle(function(){
+		  			that.show();
+		  			outerClick();
+		  		}, 
+		  		function(){
+		  			that.hide();
+		  			unbind();
+		  		});
+
+		  	};
+
+		  	this.construct();
+
+		  };
+
+		  new StatusUpdate(container, status);
+
 
 }(jQuery))

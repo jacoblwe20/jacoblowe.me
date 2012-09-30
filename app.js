@@ -21,13 +21,15 @@ request('http://api.twitter.com/1/statuses/user_timeline.json?count=1&screen_nam
       console.log(error);
       callback(error);
   }else if(response.statusCode == 200){
-      var user = JSON.parse(body)[0].user;
+      var result = JSON.parse(body)[0],
+        user = result.user;
 
       console.log('recieved information');
 
       app.locals.title = user.name;
       app.locals.image = user.profile_image_url;
       app.locals.location = user.location;
+      app.locals.update = result.text;
 
   }
 });
@@ -56,38 +58,41 @@ app.get('/v1/projects', routes.api.projects);
 app.get('/v1/groups', routes.api.groups);
 app.get('/v1/contact-info', routes.api.contact);
 app.get('/v1/about', function(req, res){
-  res.json({results:[{
-    name : 'About',
-    desc : {p:'I build things. I am younge developer based out of the IE. The web is my passion and I continue to push the bar with web technologies. I am currently the co-organizer of <a href="http://riversidejs.org">riverside.js</a>, and also a member of <a href="http://riverside.io">riverside.io</a>. Proud to be a linux user!'},
-    icon : 'icon-user',
-    link : '#'
-  },
-  {
-    name : 'Scripts I Know',
-    desc : {p:'<ul>\
-      <li>Javascript\
-      <li>CSS\
-      <li>HTML (All Versions)\
-      <li>PHP\
-      <li>Ruby\
-      <li>Regular Expressions\
-    </ul>'},
-    icon : 'icon-cog',
-    link : '#'
-  },
-  {
-    name : 'I currently work @ iShieldz',
-    icon : 'icon-briefcase',
-    link : 'http://ishieldz.com'
-  },
-  {
-    name : 'My Resume',
-    icon : 'icon-book',
-    link : 'https://docs.google.com/open?id=0B9OZFRIIBMBrSm55UFl5aHNXZGs'
-  }
+  res.json({
+    title : 'About Me',
+    results:[{
+      name : 'Just a snippet',
+      desc : {p:'I build things. I am younge developer based out of the IE. The web is my passion and I continue to push the bar with web technologies. I am currently the co-organizer of <a href="http://riversidejs.org">riverside.js</a>, and also a member of <a href="http://riverside.io">riverside.io</a>. Proud to be a linux user!'},
+      icon : 'icon-user',
+      link : '#'
+    },
+    {
+      name : 'Scripts I Know',
+      desc : {p:'<ul>\
+        <li>Javascript\
+        <li>CSS\
+        <li>HTML (All Versions)\
+        <li>PHP\
+        <li>Ruby\
+        <li>Regular Expressions\
+      </ul>'},
+      icon : 'icon-cog',
+      link : '#'
+    },
+    {
+      name : 'I currently work @ iShieldz',
+      icon : 'icon-briefcase',
+      link : 'http://ishieldz.com'
+    },
+    {
+      name : 'My Resume',
+      icon : 'icon-book',
+      link : 'https://docs.google.com/open?id=0B9OZFRIIBMBrSm55UFl5aHNXZGs'
+    }
   ], success: true});
 });
 app.get('/v1/twitter', routes.api.twitter);
+app.get('/v1/blog', routes.api.blog);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
