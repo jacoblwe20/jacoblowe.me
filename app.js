@@ -53,12 +53,6 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/resume', function(req, res){
-  var body = require('./resume.json');
-  res.setHeader('Content-Type', 'text/html');
-  res.setHeader('Content-Length', body.length);
-  res.end(body.content);
-})
 app.get('/users', user.list);
 app.get('/v1/projects', routes.api.projects);
 app.get('/v1/groups', routes.api.groups);
@@ -93,7 +87,7 @@ app.get('/v1/about', function(req, res){
     {
       name : 'My Resume',
       icon : 'icon-book',
-      link : '/resume'
+      link : '/resume.html'
     }
   ], success: true});
 });
