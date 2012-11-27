@@ -57,7 +57,7 @@ app.get('/resume', function(req, res){
   var body = require('./resume.json');
   res.setHeader('Content-Type', 'text/html');
   res.setHeader('Content-Length', body.length);
-  res.end(body.content)
+  res.end(body.content);
 })
 app.get('/users', user.list);
 app.get('/v1/projects', routes.api.projects);
