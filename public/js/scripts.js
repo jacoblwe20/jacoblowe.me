@@ -12,28 +12,28 @@
 (function($){
 
 	var listTemp = null,
-	  /* @Object 	page 			{Function} 	- Helper to keep track and load new pages
-	   * @param 	start 		{String} 		- String that hold the current pages name or the start pages name
-	   * @param 	container {Object} 		- Jquery object, from selector	
-	   */
-		page = function(start, container, nav){
+  /* @Object 	page 			{Function} 	- Helper to keep track and load new pages
+   * @param 	start 		{String} 		- String that hold the current pages name or the start pages name
+   * @param 	container {Object} 		- Jquery object, from selector	
+   */
+	page = function(start, container, nav){
 
-			this.cache = {};
-			this.current = start;
-			this.container = container;
-			this.nav = nav;
+		this.cache = {};
+		this.current = start;
+		this.container = container;
+		this.nav = nav;
 
-			var that = this;
+		var that = this;
 
-			this.nav.each(function(){
-				var ele = $(this);
-				ele.bind('click', function(e){
-					e.preventDefault();
-					that.get(ele.attr('id'));
-				})
+		this.nav.each(function(){
+			var ele = $(this);
+			ele.bind('click', function(e){
+				e.preventDefault();
+				that.get(ele.attr('id'));
 			})
+		})
 
-		};
+	};
 
 	/* @method 	load 			{Function} 	- Load new content  	
 	 * @param 	url 			{String} 		- Url to load information from
@@ -115,22 +115,19 @@
 (function($){
 
 	var container = $('.profile'),
-			status = container.find('i').data('update');
+			status = container.find('b').data('update');
 			StatusUpdate = function(container, status){
 
 		  	this.status = status;
 		  	this.container = container;
+		  	this.statusBubble =
 
 		  	this.show = function(){
-
 		  		this.status_bub.addClass('show');
-
 		  	};
 
 		  	this.hide = function(){
-
 		  		this.status_bub.removeClass('show');
-
 		  	};
 
 		  	this.linkify = function(str){
@@ -144,53 +141,25 @@
 						return t.link("http://search.twitter.com/search?q="+tag);
 					});
 				};
-
 		  	this.construct = function(){
-
-		  		var temp = '<div class="status-update"><i class="icon-twitter blue"></i><div class="triangle"></div><p>{{{status}}}</p></div>';
-
-		  		this.status_bub = $(Mustache.render(temp, {status : this.linkify(this.status)}));
-
+		  		var temp = '<i class="icon-twitter blue"></i><div class="triangle"></div><p>{{{status}}}</p>';
+		  		var statusUpdate = $('<div/>').addClass('status-update');
+		  		this.status_bub = statusUpdate.html(Mustache.render(temp, {status : this.linkify(this.status)}));
 		  		this.container.prepend(this.status_bub).css({display:'block', position: 'relative'});
-
 		  		this.events();
-
 		  	};
-
 		  	this.events = function(){
-
-		  		var that = this,
-		  			outerClick = function(){
-		  				$('html').bind('click', function(){
-		  					that.container.find('i').trigger('click');
-		  					unbind();
-		  				});
-
-		  				that.status_bub.bind('click', function(e){
-		  					e.stopPropagation();
-		  				})
-
-		  			},
-		  			unbind = function(){
-		  				$('html').unbind('click');
-		  				that.status_bub.unbind('click');
-		  			};
-
-		  		this.container.find('i').toggle(function(){
-		  			that.show();
-		  			outerClick();
-		  		}, 
-		  		function(){
-		  			that.hide();
-		  			unbind();
+		  		var that = this;
+		  		that.container.on('click', 'b', function(){
+		  			if(that.status_bub.hasClass('show')){
+		  				that.hide();
+		  			}else{
+		  				that.show();
+		  			}
 		  		});
-
 		  	};
-
 		  	this.construct();
-
 		  };
-
 		  new StatusUpdate(container, status);
 
 

@@ -46,6 +46,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+  app.use(require('connect-assets')());
 });
 
 app.configure('development', function(){
@@ -62,27 +63,28 @@ app.get('/v1/about', function(req, res){
     title : 'About Me',
     results:[{
       name : 'Just a snippet',
-      desc : {p:'I build things. I am younge developer based out of the IE. The web is my passion and I continue to push the bar with web technologies. I am currently the co-organizer of <a href="http://riversidejs.org">riverside.js</a>, and also a member of <a href="http://riverside.io">riverside.io</a>. Proud to be a linux user!'},
+      desc : {
+        p:'I make things. I am developer based out of the Inland Empire. The web is my passion and I continue to push the bar with web technologies. I am currently the co-organizer of <a href="http://riversidejs.org">riverside.js</a>, and also a founder of <a href="http://riverside.io">riverside.io</a>. Proud to be a linux user!'
+      },
       icon : 'icon-user',
       link : '#'
     },
     {
-      name : 'Scripts I Know',
+      name : 'Me',
       desc : {p:'<ul>\
-        <li>Javascript\
-        <li>CSS\
-        <li>HTML (All Versions)\
-        <li>PHP\
-        <li>Ruby\
-        <li>Regular Expressions\
+        <li>Javascript Ninja\
+        <li>CSS Tamer\
+        <li>HTML Carpenter\
+        <li>PHP Parter\
+        <li>Regular Expressions Wrangler\
       </ul>'},
       icon : 'icon-cog',
       link : '#'
     },
     {
-      name : 'I currently work @ iShieldz',
+      name : 'I currently work @ eGood',
       icon : 'icon-briefcase',
-      link : 'http://ishieldz.com'
+      link : 'http://www.egood.com'
     },
     {
       name : 'My Resume',

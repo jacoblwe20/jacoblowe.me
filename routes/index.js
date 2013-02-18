@@ -66,6 +66,14 @@ exports.api = {
 			title : 'Projects & Plugins',
 			results : [
 				{
+					name : "ParkingLot.io",
+					link : "http://parkinglot.io",
+					icon : "icon-road",
+					desc : {
+						p : "ParkingLot.io is a project that was spawned from an idea at a <a href=\"riverside.io\" />riverside.io</a> meeting to make a app for free parking. I got working on it and ended up creating a full blown web app out of it. Its in beta for now but try it out sign up and contribute, it helps a 'lot'"
+					}
+				},
+				{
 					name : "Zoomy jQuery Plugin",
 					link : "http://zoomy.me",
 					icon : "icon-search",
@@ -74,11 +82,19 @@ exports.api = {
 					}
 				},
 				{
-					name : "Zoomy Wordpress Plugin",
-					link : "http://zoomy.me/wordpress.html",
-					icon : "icon-zoom-in",
+					name : "Mangos",
+					link : "https://github.com/jacoblwe20/mangos",
+					icon : "icon-leaf",
 					desc : {
-						p : 'Zoomy Wordpress Plugin is a plugin built for Wordpress that allows you to use Zoomy inside of your blog'
+						p : "Mangos.js is a simple <a href=\"http://nodejs.org\">Nodejs</a> module to make MongoDB syntax CRUD. It uses and exposes controls straight from MongoDB's Native driver"
+					}
+				},
+				{
+					name : "Bowler",
+					link : "http://jacoblwe20.github.com/bowler/",
+					icon : "icon-adjust",
+					desc : {
+						p : "Bowler.js is a Model / View framework for the gentleman in you."
 					}
 				},
 				{
@@ -95,6 +111,14 @@ exports.api = {
 					icon : "icon-warning-sign",
 					desc : {
 						p : 'Notify is a simple notification plugin that is easly acessable and customizable. There is support for many thing like buttons and closing.'
+					}
+				},
+				{
+					name : "Zoomy Wordpress Plugin",
+					link : "http://zoomy.me/wordpress.html",
+					icon : "icon-zoom-in",
+					desc : {
+						p : 'Zoomy Wordpress Plugin is a plugin built for Wordpress that allows you to use Zoomy inside of your blog'
 					}
 				},
 				{
