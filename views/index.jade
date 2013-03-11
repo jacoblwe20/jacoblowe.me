@@ -7,37 +7,36 @@ block content
 				.span1.center
 					.profile
 						b(data-update=update)
-							img.face(src=image)
+							img.face.shake(src=image)
 					h6 
 						span.title= title
 					
 				.span8
 					h2.tagline
-						i.icon-bolt.yellow
 						span.green= tagline
 					.content
 						
 						
 	.row.modules.navigation
 		.centered.center.items
-			.item.current(id="about")
+			.item(id="about")
 				h4
 					i.icon-user.grey
 					span.item-name About
 			.item(id="projects")
 				h4
-					i.icon-beaker.grey
+					i.icon-code.grey
 					span.item-name Projects
 			.item(id="groups")
 				h4
-					i.icon-group.grey
+					i.icon-groups.grey
 					span.item-name Groups
-			//- .item(id="blog")
+			//- .item(id="twitter")
 			//- 	h4
-			//- 		i.icon-pencil.grey
-			//- 		span.item-name Blog
+			//- 		i.icon-twitter.grey
+			//- 		span.item-name Tweets
 			.item(id="contact-info")
 				h4
-					i.icon-envelope-alt.grey
+					i.icon-mail.grey
 					span.item-name Contact
 	

@@ -1,0 +1,298 @@
+{
+  "name": "",
+  "glyphs": [
+    {
+      "search": [
+        "arrow",
+        "down"
+      ],
+      "code": 8595,
+      "from": 8595,
+      "uid": "1c4068ed75209e21af36017df8871802",
+      "css": "scroll",
+      "orig_css": "down",
+      "orig_code": 8595,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "keyboard"
+      ],
+      "code": 9000,
+      "uid": "005a38f6af74b31aeb817fedb09d2175",
+      "css": "keyboard",
+      "orig_css": "keyboard",
+      "orig_code": 9000,
+      "src": "entypo",
+      "from": 9000
+    },
+    {
+      "search": [
+        "image",
+        "list",
+        "thumbnails"
+      ],
+      "code": 9871,
+      "uid": "5e9f01871d44e56b45ecbfd00f4dbc3a",
+      "css": "layout",
+      "orig_css": "layout",
+      "orig_code": 9871,
+      "src": "entypo",
+      "from": 9871
+    },
+    {
+      "search": [
+        "zoom",
+        "scale",
+        "in"
+      ],
+      "code": 57345,
+      "uid": "68c7be0f4cab6b82d5725b1ba7cec4d6",
+      "css": "zoom",
+      "orig_css": "zoom-in",
+      "orig_code": 57345,
+      "src": "elusive",
+      "from": 57345
+    },
+    {
+      "search": [
+        "leaf"
+      ],
+      "code": 57474,
+      "uid": "a904215f9fea569335d2a8addb4356b4",
+      "css": "mongo",
+      "orig_css": "leaf",
+      "orig_code": 57474,
+      "src": "elusive",
+      "from": 57474
+    },
+    {
+      "search": [
+        "code"
+      ],
+      "code": 59156,
+      "uid": "b6f32db98a3de777f5ae3005191b1831",
+      "css": "code",
+      "orig_css": "code",
+      "orig_code": 59156,
+      "src": "entypo",
+      "from": 59156
+    },
+    {
+      "search": [
+        "contact",
+        "card",
+        "vcard"
+      ],
+      "code": 59170,
+      "uid": "457c8e2b305e7af74c1be4f07a01ca92",
+      "css": "profile",
+      "orig_css": "vcard",
+      "orig_code": 59170,
+      "src": "entypo",
+      "from": 59170
+    },
+    {
+      "search": [
+        "suitcase"
+      ],
+      "code": 59278,
+      "from": 59278,
+      "uid": "11dd26ebf6934bf750a9156b353d7f2d",
+      "css": "suitcase",
+      "orig_css": "suitcase",
+      "orig_code": 59278,
+      "src": "entypo"
+    },
+    {
+      "search": [
+        "road"
+      ],
+      "code": 59279,
+      "from": 59279,
+      "uid": "ecede48deb16179e5ef9a3f8ffae62f4",
+      "css": "road",
+      "orig_css": "road",
+      "orig_code": 59279,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "puzzle",
+        "plugin"
+      ],
+      "code": 59318,
+      "from": 59318,
+      "uid": "xoidjr6q3rzi7tpw6hci1k6srz15g11l",
+      "css": "plugin",
+      "orig_css": "puzzle",
+      "orig_code": 59318,
+      "src": "typicons"
+    },
+    {
+      "search": [
+        "alert",
+        "bell",
+        "jingle"
+      ],
+      "code": 61503,
+      "uid": "ebb8fb741e0b3e794c90555e5f225adf",
+      "css": "bell",
+      "orig_css": "bell",
+      "orig_code": 61503,
+      "src": "mfglabs",
+      "from": 61503
+    },
+    {
+      "search": [
+        "mail",
+        "email"
+      ],
+      "code": 101,
+      "uid": "ccc2329632396dc096bb638d4b46fb98",
+      "css": "mail",
+      "orig_css": "mail-alt",
+      "orig_code": 101,
+      "src": "fontawesome",
+      "from": 61664
+    },
+    {
+      "search": [
+        "beer"
+      ],
+      "code": 61692,
+      "uid": "890bcc8897cce868f6ee65cadadde036",
+      "css": "beer",
+      "orig_css": "beer",
+      "orig_code": 61692,
+      "src": "fontawesome",
+      "from": 61692
+    },
+    {
+      "search": [
+        "twitter"
+      ],
+      "code": 62211,
+      "meta": {
+        "homepage": "https://twitter.com/about/resources/logos",
+        "author": "Twitter"
+      },
+      "uid": "4c01f5d3ba5fbf029bca8630cce41e6a",
+      "file": "twitter-bird",
+      "transform": {
+        "rescale": 0.9,
+        "offset": 0.05
+      },
+      "css": "twitter",
+      "orig_css": "twitter-bird",
+      "orig_code": 62211,
+      "src": "brandico",
+      "from": 62211
+    },
+    {
+      "search": [
+        "github"
+      ],
+      "code": 62216,
+      "meta": {
+        "twitter": "https://twitter.com/puzrin",
+        "github": "https://github.com/puzrin",
+        "author": "Vitaly Puzrin"
+      },
+      "uid": "4a0bb1ac004980bb3837560d4c9e8cee",
+      "file": "github",
+      "transform": {
+        "rescale": 0.9,
+        "offset": 0.05
+      },
+      "css": "github",
+      "orig_css": "github",
+      "orig_code": 62216,
+      "src": "brandico",
+      "from": 62216
+    },
+    {
+      "search": [
+        "google",
+        "plus",
+        "social",
+        "logo"
+      ],
+      "code": 62223,
+      "uid": "b945f4ac2439565661e8e4878e35d379",
+      "css": "gplus",
+      "orig_css": "gplus",
+      "orig_code": 62223,
+      "src": "entypo",
+      "from": 62223
+    },
+    {
+      "search": [
+        "globe",
+        "world"
+      ],
+      "code": 119,
+      "from": 127758,
+      "uid": "197375a3cea8cb90b02d06e4ddf1433d",
+      "css": "globe",
+      "orig_css": "globe",
+      "orig_code": 119,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "profile",
+        "contact",
+        "user"
+      ],
+      "code": 128100,
+      "uid": "bbd66ef66bb8fa9edde54d9a90b89150",
+      "css": "user",
+      "orig_css": "user",
+      "orig_code": 128100,
+      "src": "entypo",
+      "from": 128100
+    },
+    {
+      "search": [
+        "users",
+        "contacts",
+        "friends"
+      ],
+      "code": 128101,
+      "uid": "ecf8edb95c3f45eb433b4cce7ba9f740",
+      "css": "groups",
+      "orig_css": "users",
+      "orig_code": 128101,
+      "src": "entypo",
+      "from": 128101
+    },
+    {
+      "search": [
+        "doc",
+        "text",
+        "article"
+      ],
+      "code": 128196,
+      "uid": "1189604bf305b6b03a74685ce60e6632",
+      "css": "resume",
+      "orig_css": "doc-text",
+      "orig_code": 128196,
+      "src": "entypo",
+      "from": 128196
+    },
+    {
+      "search": [
+        "search",
+        "find"
+      ],
+      "code": 128269,
+      "from": 128269,
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "orig_css": "search",
+      "orig_code": 128269,
+      "src": "fontawesome"
+    }
+  ]
+}

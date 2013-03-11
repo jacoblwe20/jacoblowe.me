@@ -9,6 +9,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , request = require('request')
+  , moment = require('moment')
   , twt_u = 'jacob2dot0';
 
 
@@ -25,11 +26,15 @@ request('http://api.twitter.com/1/statuses/user_timeline.json?count=1&screen_nam
         user = result.user;
 
       console.log('recieved information');
+      var date = moment(result.created_at, "ddd MMM DD HH:mm:ss Z YYYY");
 
       app.locals.title = user.name;
       app.locals.image = user.profile_image_url;
       app.locals.location = user.location;
-      app.locals.update = result.text;
+      app.locals.update = "<small>" +
+        date.fromNow() +
+        "</small><br />" +
+        result.text;
 
   }
 });
@@ -54,47 +59,14 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/:page', routes.index);
 app.get('/v1/projects', routes.api.projects);
 app.get('/v1/groups', routes.api.groups);
 app.get('/v1/contact-info', routes.api.contact);
-app.get('/v1/about', function(req, res){
-  res.json({
-    title : 'About Me',
-    results:[{
-      name : 'Just a snippet',
-      desc : {
-        p:'I make things. I am developer based out of the Inland Empire. The web is my passion and I continue to push the bar with web technologies. I am currently the co-organizer of <a href="http://riversidejs.org">riverside.js</a>, and also a founder of <a href="http://riverside.io">riverside.io</a>. Proud to be a linux user!'
-      },
-      icon : 'icon-user',
-      link : '#'
-    },
-    {
-      name : 'Me',
-      desc : {p:'<ul>\
-        <li>Javascript Ninja\
-        <li>CSS Tamer\
-        <li>HTML Carpenter\
-        <li>PHP Parter\
-        <li>Regular Expressions Wrangler\
-      </ul>'},
-      icon : 'icon-cog',
-      link : '#'
-    },
-    {
-      name : 'I currently work @ eGood',
-      icon : 'icon-briefcase',
-      link : 'http://www.egood.com'
-    },
-    {
-      name : 'My Resume',
-      icon : 'icon-book',
-      link : '/resume.html'
-    }
-  ], success: true});
-});
+app.get('/v1/about', routes.api.about);
 app.get('/v1/twitter', routes.api.twitter);
 app.get('/v1/blog', routes.api.blog);
+app.get('/v1/404', routes.api._404);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

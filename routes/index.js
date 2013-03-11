@@ -1,9 +1,11 @@
 
+
 /*
  * GET home page.
  */
 
 var request = require('request'),
+	moment = require('moment'),
 	tw_user = 'jacob2dot0',
 	linkify = function(str){
 		return str.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
@@ -18,6 +20,7 @@ var request = require('request'),
 	};
 
 exports.index = function(req, res){
+  res.cookie("__", req.params.page);
   res.render('index');
 };
 
@@ -36,7 +39,7 @@ exports.api = {
 				{
 					name : "riverside.js",
 					link : "http://riversidejs.org",
-					icon : "icon-cloud",
+					icon : "icon-code",
 					desc : {
 						p : 'Meetup with local Javascript Developers in the Inland Empire. We are a group of Riverside tech enthusiast, and the group is growing larger everyday. Come join us and together lets learn to build and hack javascript.'
 					}
@@ -44,17 +47,9 @@ exports.api = {
 				{
 					name : "Riverside.io",
 					link : "http://riverside.io",
-					icon : "icon-certificate",
+					icon : "icon-suitcase",
 					desc : {
 						p : 'Where people from all over the Inland Empire come to learn how to code, design & ship web apps.'
-					}
-				},
-				{
-					name : 'StartupIE',
-					link : 'http://www.meetup.com/startupie/',
-					icon : 'icon-briefcase',
-					desc : {
-						p : 'Through monthly events we want to help bring together the burgeoning tech startup community here in the Inland Empire, CA. If you are interested in tech entrepreneurship, have an idea for a great startup company, want to work at a startup or just want to network with people, this is the group to join.'
 					}
 				}
 			],
@@ -76,7 +71,7 @@ exports.api = {
 				{
 					name : "Zoomy jQuery Plugin",
 					link : "http://zoomy.me",
-					icon : "icon-search",
+					icon : "icon-zoom",
 					desc : {
 						p : 'Zoomy is a quick and easy plugin that will zoom into a picture. Zoomy is a flexible zoom plugin and can be used with either, two copies of the same image, or one image linked to its self.'
 					}
@@ -84,7 +79,7 @@ exports.api = {
 				{
 					name : "Mangos",
 					link : "https://github.com/jacoblwe20/mangos",
-					icon : "icon-leaf",
+					icon : "icon-mongo",
 					desc : {
 						p : "Mangos.js is a simple <a href=\"http://nodejs.org\">Nodejs</a> module to make MongoDB syntax CRUD. It uses and exposes controls straight from MongoDB's Native driver"
 					}
@@ -92,7 +87,7 @@ exports.api = {
 				{
 					name : "Bowler",
 					link : "http://jacoblwe20.github.com/bowler/",
-					icon : "icon-adjust",
+					icon : "icon-beer",
 					desc : {
 						p : "Bowler.js is a Model / View framework for the gentleman in you."
 					}
@@ -100,7 +95,7 @@ exports.api = {
 				{
 					name : 'Redeyeoperations.com',
 					link : 'http://redeyeoperations.com',
-					icon : 'icon-rss',
+					icon : 'icon-layout',
 					desc : {
 						p : 'Redeyeoperations.com is a blog that a write for and run. This site also is a harbor for some of my older design and development work.'
 					}
@@ -108,7 +103,7 @@ exports.api = {
 				{
 					name : "Notify jQuery Plugin",
 					link : "http://redeyeoperations.com/plugins/Notify",
-					icon : "icon-warning-sign",
+					icon : "icon-bell",
 					desc : {
 						p : 'Notify is a simple notification plugin that is easly acessable and customizable. There is support for many thing like buttons and closing.'
 					}
@@ -116,7 +111,7 @@ exports.api = {
 				{
 					name : "Zoomy Wordpress Plugin",
 					link : "http://zoomy.me/wordpress.html",
-					icon : "icon-zoom-in",
+					icon : "icon-plugin",
 					desc : {
 						p : 'Zoomy Wordpress Plugin is a plugin built for Wordpress that allows you to use Zoomy inside of your blog'
 					}
@@ -124,7 +119,7 @@ exports.api = {
 				{
 					name : "Scrollimate jQuery Plugin",
 					link : "http://redeyeoperations.com/plugins/Scrollimate",
-					icon : "icon-cogs",
+					icon : "icon-scroll",
 					desc : {
 						p : 'Scrollimate is a plugin that will animate elements on the page according to the position of the sidebar. It is current still in beta.'
 					}
@@ -150,12 +145,12 @@ exports.api = {
 				{
 					name : 'Google +',
 					link : 'https://plus.google.com/102589001946394459745/',
-					icon : 'icon-google-plus-sign'
+					icon : 'icon-gplus'
 				},
 				{
 					name : "ping@jacoblowe.me",
 					link : "mailto:ping@jacoblowe.me",
-					icon : "icon-envelope-alt"
+					icon : "icon-mail"
 					// desc : {
 					// 	p : '<input type="text" placeholder="email@host.com"><br><input class="btn btn-alt" type="submit" value="submit"/>'
 					// }
@@ -176,18 +171,24 @@ exports.api = {
             var twts = JSON.parse(body),
             	compiled = '<ul>';
             	newRes = {
-            		name : 'Tweets',
+            		name : 'Follow Me',
             		link : 'https://twitter.com/#!/' + tw_user,
             		icon : 'icon-twitter'
             	};
 
             for(var i in twts){
+            	//Sun Mar 10 19:38:32 +0000 2013
+            	var date = moment(twts[i].created_at, "ddd MMM DD HH:mm:ss Z YYYY");
 
-            	if(i === 0){
-            		app.locals.update = linkify(twt[i].text);
-            	}
-
-            	compiled += '<li><i class="icon-comment"></i>'+linkify(twts[i].text) + '<br><small><a href=https://twitter.com/'+tw_user+'/status/'+twts[i].id+'>details</a></small>';
+            	compiled += '<li><small>' +
+            	 date.fromNow() +
+            	 '</small><br /><p>'+ 
+            	 linkify(twts[i].text) + 
+            	 '</p><small><a href=https://twitter.com/' + 
+            	 tw_user + 
+            	 '/status/' + 
+            	 twts[i].id + 
+            	 '>details</a></small>';
             		
             }
 
@@ -197,12 +198,47 @@ exports.api = {
             	p : compiled
             }
 
-            res.json({success: true, results : newRes});
+            res.json({success: true, title : "Twitter Feed", results : newRes});
 
 
         }
 
     });
+	},
+	about : function(req, res){
+		res.json({
+		    title : 'About Me',
+		    results:[{
+		      name : 'Just a snippet',
+		      desc : {
+		        p:'I make things. I am developer based out of the Inland Empire. The web is my passion and I continue to push the bar with web technologies. I am currently the co-organizer of <a href="http://riversidejs.org">riverside.js</a>. Proud to be a linux user!'
+		      },
+		      icon : 'icon-user',
+		      link : '#'
+		    },
+		    {
+		      name : 'I am a',
+		      desc : {p:'<ul>\
+		        <li>Javascript Ninja\
+		        <li>CSS Tamer\
+		        <li>HTML Carpenter\
+		        <li>PHP Parter\
+		        <li>Regular Expressions Wrangler\
+		      </ul>'},
+		      icon : 'icon-profile',
+		      link : '#'
+		    },
+		    {
+		      name : 'I currently work @ eGood',
+		      icon : 'icon-suitcase',
+		      link : 'http://www.egood.com'
+		    },
+		    {
+		      name : 'My Resume',
+		      icon : 'icon-resume',
+		      link : '/resume.html'
+		    }
+		  ], success: true});
 	},
 	blog : function(req, res){
 		request('http://redeyeoperations.com/?json=1&count=1', function(error, response, body){
@@ -227,5 +263,21 @@ exports.api = {
 			res.json({results : output, success : true});
 
 		})
+	},
+	_404 : function(req, res){
+		res.json({
+			title : '404 Page Not Found!',
+			results :[
+				{
+					name : "Maybe something is misspelled?",
+					link : "#",
+					icon : "",
+					desc : {
+						p : 'I misspell things all the time, or maybe its on error on my side. Just click the links above and that should get you to the page your looking for.'
+					}
+				}
+			],
+			success : true
+		});
 	}
 };

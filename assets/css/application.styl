@@ -1,14 +1,40 @@
 
 @import 'nib'
+@import './icons.css'
 
 blue = #08c
 green = #093
 yellow = #f89b00
 red = #DD4B39
 grey = #999
+lightGrey = #F3F3F3
 
-body 
-  background url(../img/patterns/project_paper.png)
+@keyframes shake {
+  0%{
+    transform translate(0, 0)
+  }
+  45%{
+    transform translate(0, 0)
+  }
+  50%{
+    transform translate(0, -2px)
+  }
+  55%{
+    transform translate(0, 2px)
+  }
+  60%{
+    transform translate(0, -2px)
+  }
+  65%{
+    transform translate(0, 2px)
+  }
+  100%{
+    transform translate(0, 0)
+  }
+}
+
+body
+  background lightGrey url('../img/patterns/subtle_dots.png')
   padding 20px 0 100px
   font 14px  'Open Sans', Helvetica, Arial, sans-serif
   text-shadow 0px 1px 2px rgba(255,255,255,1)
@@ -64,6 +90,7 @@ body
     text-align center
     bottom -1px
     box-shadow 0px -1px 2px rgba(0,0,0,.1)
+    border-top 2px solid lightGrey
     left 0
     right 0
     &::before
@@ -75,7 +102,7 @@ body
       min-width 90%
       border-radius(100%)
       content '$'
-      box-shadow 0 0 10px yellow
+      box-shadow 0 0 10px lightGrey
     .items
       display -webkit-box 
       display -moz-box 
@@ -96,7 +123,7 @@ body
       -moz-box-flex 1
       flex 1
       padding 10px 0
-      border-top 0px solid #ccc
+      border-top 0px solid lightGrey
       transition(.3s ease-in .2s)
       &.current
         border-top-width 5px
@@ -104,7 +131,7 @@ body
         h4
           margin-top 5px
           i
-            color #DD4B39
+            color blue
             margin 0
       h4
         color #444
@@ -121,7 +148,11 @@ body
   //main content
   .main
     width 80%
-    margin 0 auto 
+    margin 0 auto
+    .tagline
+      i
+        width 25px
+        height 25px 
     //sidebar
     .profile
       position relative
@@ -130,14 +161,18 @@ body
         width 100%
         border-radius 100%
         margin 0 0 15px 0
-        box-shadow 0px 1px 2px rgba(0,0,0,.8), inset 0px 1px 10px rgba(255,255,255,.8)
         cursor pointer
+        &.shake
+          animation-duration 3s
+          animation-name shake
+          animation-iteration-count infinite
       .status-update
+        z-index 5
         position absolute
         width 300px
         padding 10px 10px 5px
         border-radius 4px
-        border 1px solid #ddd
+        border 2px solid lightGrey
         background #fff
         box-shadow 0px 1px 2px rgba(0,0,0,.1)
         top 110%
@@ -155,8 +190,9 @@ body
         i
           position absolute
           bottom 0
-          right 0
-          margin 10px     
+          right 5px
+          margin 10px  
+          cursor pointer   
         .triangle
           position absolute
           top 0
@@ -168,34 +204,66 @@ body
           border-color transparent transparent #fff transparent
           border-style solid
           margin-top -20px
+          &:after
+            z-index -1
+            content ""
+            position absolute
+            top 0
+            margin-left -11px
+            left 50%
+            width 0
+            height  0
+            border-width 11px
+            border-color transparent transparent lightGrey transparent
+            border-style solid
+            margin-top -14px
 
     .content
-      transition(.3s ease-in .2s)
-
-      .content-items
-        list-style-type  none
-        margin 0
-        padding 0
-        .item
-          padding 10px 0
-          font-size 18px
-          line-height 22px
-          border-bottom 1px solid #ddd
-          i
-            margin 3px 10px
-            background-image none
-        .itemhover i
-          color #f89b00
-          transition(.3s ease-in .2s)
-        .description
-          margin 20px 20px 10px 20px
-        ul
-          list-style-type none
+      position relative
+      overflow hidden
+      transition height .5s linear
+      section
+        min-width 100%
+        z-index 1
+        box-sizing border-box
+        border-radius 4px
+        padding 0 20px 20px
+        position absolute
+        top 0
+        left 0
+        opacity 0
+        transform scale(.9)
+        transform-origin top left
+        transition all .5s linear
+        &.current
+          z-index 2
+          transition all .5s linear .5s
+          transform scale(1)
+          opacity 1
+        .content-items
+          list-style-type  none
           margin 0
-          padding 0 20px 20px 20px
-          li
-            border-bottom 1px solid #ccc
+          padding 0
+          .item
             padding 10px 0
+            font-size 18px
+            line-height 22px
+            border-bottom 1px solid #ddd
+            i
+              margin 3px 10px
+              background-image none
+          .itemhover i
+            color #f89b00
+            transition(.3s ease-in .2s)
+          .description
+            margin 20px 20px 10px 20px
+          ul
+            list-style-type none
+            margin 0
+            padding 0 20px 20px 20px
+            li
+              border-bottom 1px solid #ccc
+              padding 10px 0
 
 @media (min-width : 980px)
   body
@@ -204,16 +272,20 @@ body
       top 0px
       bottom auto!important
       box-shadow 0px 1px 2px rgba(0,0,0,.1)
+      border-top 0
+      border-bottom 2px solid lightGrey
       &::before
         bottom auto
         top -21px 
       .item
-        border-bottom 0px solid #ccc
+        border-bottom 0px solid lightGrey
         height 38px
         &.current
           border-bottom-width 5px
           border-top-width 0
           height 33px
+          h4
+            margin-top 10px
 
 @media(min-width : 768px)
   body
@@ -232,7 +304,7 @@ body
       .item, .item.current
         h4 
           i
-            margin 0 10px
+            margin 0 15px
           .item-name
             display inline
       
