@@ -8,6 +8,7 @@
  *
  */
 
+
  (function($, exports){
 
   var Cookies = function(){
@@ -16,16 +17,11 @@
     }
     var that = this;
     that.jar = function(name){
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
-      for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        if (c.indexOf(nameEQ) == 0){
-          var value = c.substring(nameEQ.length, c.length);
-          return value;
-        }
-      }
-      return null;
+      name = name.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
+
+      var regex = new RegExp('(?:^|;)\\s?' + name + '=(.*?)(?:;|$)','i'),
+        match = document.cookie.match(regex);
+      return match && unescape(match[1]);
     };
   };
 
@@ -257,12 +253,17 @@
 
   var content = $('.content');
   var items = $('.navigation').find('.item');
-  var pageName = cookies().jar('__');
+  var pageName = cookies().jar('__p__');
   var profile = $('.profile');
   var tweet = profile.find('b').data('update');
   var status = new Status(profile, tweet);
 
-  if(pageName === "undefined"){
+  console.log(pageName);
+
+  if(pageName == "undefined" || 
+      !(typeof pageName === "string") || 
+      pageName === "" ||
+      pageName === "null"){
     pageName = "about";
   };
   content = new page(pageName, content, items);

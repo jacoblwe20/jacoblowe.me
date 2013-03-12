@@ -20,7 +20,7 @@ var request = require('request'),
 	};
 
 exports.index = function(req, res){
-  res.cookie("__", req.params.page);
+  res.cookie("__p__", req.params.page);
   res.render('index');
 };
 
