@@ -6,6 +6,7 @@
 
 var request = require('request'),
 	moment = require('moment'),
+	fs = require('fs'),
 	tw_user = 'jacob2dot0',
 	linkify = function(str){
 		return str.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
@@ -20,8 +21,15 @@ var request = require('request'),
 	};
 
 exports.index = function(req, res){
-  res.cookie("__p__", req.params.page);
-  res.render('index');
+  if(/resume.html/.test(req.params.page)){
+  	// I could probably do something cool with this
+  	fs.readFile(__dirname + '/../public/resume.html', 'utf8', function(err, text){
+        res.send(text);
+    });
+  }else{
+  	res.cookie("__p__", req.params.page);
+  	res.render('index');
+  }
 };
 
 
