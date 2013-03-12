@@ -232,12 +232,12 @@ body
         top 0
         left 0
         opacity 0
-        transform scale(.9)
+        transform scale(1.1)
         transform-origin top left
-        transition all .5s linear
+        transition transform .5s linear, opacity .5s linear
         &.current
           z-index 2
-          transition all .5s linear .5s
+          transition transform .5s linear .5s, opacity .5s linear .5s
           transform scale(1)
           opacity 1
         .content-items
