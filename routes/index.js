@@ -156,6 +156,11 @@ exports.api = {
 					icon : 'icon-gplus'
 				},
 				{
+					name : 'Codepen',
+					link : 'http://codepen.io/jacoblwe20/',
+					icon : 'icon-code'
+				},
+				{
 					name : "ping@jacoblowe.me",
 					link : "mailto:ping@jacoblowe.me",
 					icon : "icon-mail"
