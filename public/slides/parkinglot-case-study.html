@@ -1,0 +1,390 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <img src="images/parkingLot_logo.png">
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/parkingLot_logo.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What is Parkinglot.io</h2>
+      <h3>besides awesome?</h3>
+    </hgroup>
+    <article>
+      <p><a href="http://parkinglot.io">ParkingLot.io</a> is a nodejs application that lives on <a href="http://nodejitsu.com">Nodejitsu</a>. It is an app that you can find free parking spot near destinations.</p>
+      <img class="screenshot" src="images/screenshot.png" />
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Overview</h2>
+      <h3>what I will be talking about</h3>
+    </hgroup>
+    <article class="flexbox vleft">
+      <ul class="build fade">
+        <li>Backend Stack Highlights</li>
+        <li>Frontend Stack</li>
+        <li>Fontend Structuring</li>
+        <li>Experience</li>
+      </ul>
+    </article>
+  </slide>
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/parkingLot_logo.png"></aside>
+    <hgroup>
+      <h2>Stack Highlights</h2>
+      <h3 class=blue>NodeJS stack</h3>
+    </hgroup>
+  </slide>
+  <slide>
+    <hgroup>
+      <h2>NPM</h2>
+      <h3>Supereffinawesomesause package manager!</h3>
+    </hgroup>
+    <article class=smaller>
+      <p>NPM makes it super easy to manage packages and to install them as well.</p>
+      <pre class="prettyprint" data-lang="json">
+{
+  "name": "parkingLot",
+  "version": "0.6.14",
+  <b>"dependencies": {
+    "express": "3.0.2",
+    "stylus": "latest",
+    "jade": "*",
+    "mangos": "0.1.3",
+    "connect-assets": "latest"
+  },</b>
+  "engines": {
+    "node": "0.8.x"
+  }
+}
+</pre>
+<p>This made it super easy for me to switch computers do fast deploys and compartmentalize code.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <p><b>Talk about Mangos</b></p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>MongoDB</h2>
+    </hgroup>
+    <article>
+      <p>document based database system. Built in Geo Spatial Indexing.  Fast reads. Easy to modify database entries.</p>
+      <h3>Sample query</h3>
+      <p><a href="http://parkinglot.io/v0/locations.json?_=center&_$near=33.95417356085004,-117.38750917204857&_$maxDistance=0.008&status=active"/>http://parkinglot.io/v0/locations.json?_=center&_$near=33.95417356...</a></p>
+      <pre class="prettyprint" data-lang="json">
+{
+  "status":"active",
+  <b>"center":{
+    "$near": [33.954173560850045,-117.38750917204857],
+    "$maxDistance":0.008
+  }</b>
+}
+      </pre>
+    </article>
+  </slide>
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/parkingLot_logo.png"></aside>
+    <hgroup>
+      <h2 class=green>Frontend Stack</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <p><b>Mention other slides</b></p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>jQuery</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+      <ul class=build>
+        <li>Stable, allot of cross browser support.</li>
+        <li>Somewhat light framework.</li>
+        <li>Easy to build small <a href="http://www.redeyeoperations.com/slides/plugged-into-jquery/#1">plugins</a></li>
+        <li><a href="http://www.redeyeoperations.com/slides/jquery-basics/#1">Super Easy to use</a></li>
+      </ul>
+      <img src=http://drupal.org/files/images/OQAAAI1PPrJY0nBALB7mkvju3mkQXqLmzMhxEjeb4gp8aujEUQcLfLyy-Sn4gZdkAas6-k8eYbQlGDE-GCjKfF5gIrUA15jOjFfLRv77VBd5t-WfZURdP9V3PdmT.png />
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <p><b>Mention that other maps are available</b></p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Google Maps</h2>
+    </hgroup>
+    <article>
+      <p>Im a ninja at Google Maps API - so experience with maps may vary</p>
+      <p>Google maps api is settup to does allot of cool things right without much coding. Other Map apis are great I chose to use Google Maps Api because i already know it.</p> 
+      <pre class="prettyprint" data-lang="javascript">
+var Location = new google.maps.LatLng(lat, lng);
+var options = {
+  zoom : 19,
+  center : Location,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+  disableDefaultUI: true
+};
+<b>var map  = new google.maps.Map(document.getElementById(“map”), options);</b>     
+      </pre>
+    </article> 
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/parkingLot_logo.png"></aside>
+    <hgroup>
+      <h2>Dealing with the Browser</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Navigator</h2>
+      <h3>Not the browser!</h3>
+    </hgroup>
+    <article>
+      <p>There is two differnt methods in <code>navigator.geolocation</code>:<br/><code>navigator.geolocation.getCurrentLocation</code><br />
+        <code>navigator.geoLocation.watchPosition</code></p>
+      <p>For my purposes since I am mapping a user point to a map. I used watch Position</p>
+      <pre>navigator.geoLocation.watchPosition(sure, nope, options);</pre>
+      <p>Get Current Position has it use cases.</p>
+      <p>In raw form the data can be very innaccurate. Further processing can result in better results.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <p><b>Examples of usage</b></p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Local Storage</h2>
+      <h3>Use it, use it, use it</h3>
+    </hgroup>
+    <article class="flexbox vleft">
+      <p>User Relevant data <br />If they inputed the data, and they might want to recall that data. Store it!></p>
+      <p>Use JSON, to store Objects</p>
+      <pre>
+localStorage.setItem(“recent_searchs”, JSON.stringify(searchs));
+var searchs = JSON.parse(localStorage.getItem());
+      </pre>
+    </article>
+  </slide>
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/parkingLot_logo.png"></aside>
+    <hgroup>
+      <h2 class=green>Frontend Structure</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>File Structure</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+      <img src="images/js_structure.png" />
+      <p></p>
+      <h1 class=green>Seperated</h1>
+      <p>Everything is sperated into seperate files. Using connect-assets enables me to do this, but you can also do this by building the file.</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What is in the files?</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+      <ul class=build>
+        <li><h1 class=green>Components</h1>
+      <li>
+        <p></p>
+        <h1 class=blue>Utilities</h1>
+      </li>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Component</h2>
+    </hgroup>
+    <article class=smaller>
+      <p>Components are fully funtional elements on a page.</p>
+      <h1 class=green>Components usualy contain</h1>
+      <p></p>
+      <ul>
+        <li>A function to build component</li>
+        <li>A function to add component to document</li>
+        <li>A function to attach events</li>
+        <li>A couple way to interface with outside code</li>
+      </ul>
+      <p></p>
+      <pre class="prettyprint" data-lang="javascript">
+var about = new Panel($(“body”), {content : “about me”}, 6); //build new panel with functioning close button        </pre>
+      <h1 class=blue>An example from other code</h1>
+      <p></p>
+      <pre class="prettyprint" data-lang="javascript">
+chrome.devtools.panels.create("Font Picker", "FontPicker.png", "Panel.html", function(panel) { ... });</pre>
+      <p>Eg from Google Chrome Extension Docs</p>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Utilities</h2>
+    </hgroup>
+    <article class=smaller>
+      <p>A set of tools that allows components to interact with input or output easier, and a set of tools that are used amoung multiple components.</p>
+      <pre class="prettyprint" data-lang="javascript">
+var Request = function(endpoint){
+  var that = this;
+  that.endpoint = endpoint;
+  that.request = function(method, q, callback){
+    $.ajax({
+      url : that.endpoint,
+      data : q,
+      type: method,
+      error: function(err){
+        callback(err, {});
+      },
+      success: function(res){
+        callback(null, res);
+      }
+    });
+  };
+});
+var locations = new Request(“/v0/locations.json”);
+locations(“get”, {title : hello}, function(err, res){
+  if(err) throw err.message
+  else{
+    console.log(res);
+  }
+})</pre>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/parkingLot_logo.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Move Fast and Break Things
+      </q>
+      <div class="author">
+        Facebook<br>
+        Philosophy
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Keeping Interest in project</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+      <p>doing cool things with the project keeps my interest in the project. Keeps me pushing quality code to project and keep me satisfied with the progress of the project.</p>
+      <p></p>
+      <h1 color=green>I try to deploy a new version everyday!</h1>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>If your not refactoring</h2>
+      <h3>your doing it wrong</h3>
+    </hgroup>
+    <article class="flexbox vleft">
+      <p>To assume that you did it right the first time and that you shouldnt change a thing is a bold assumption. It may take time away from interesting features but is completely nessisary.</p>
+      <p></p>
+      <h1 color=blue>The more you do it the better your application will run and the easier that code will be to read</h1>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Build it like everyone is watching</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+      <p>If you think your code is messy, others will too.</p>
+      <p></p>
+      <h1 color=blue>Clean your code up to a point where you can jump into a file you havent worked on in weeks and know exactly what is going on.</h1>
+      <p></p>
+      <p>Use common conventions and try to leave comments, especially on complicated sections.</p>
+    </article>
+  </slide>
+
+
+  <slide class="thank-you-slide segue nobackground">
+    <article class="flexbox vleft auto-fadein">
+      <h2>Questions?</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <img src="images/parkingLot_logo.png">
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

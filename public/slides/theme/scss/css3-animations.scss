@@ -1,0 +1,111 @@
+@import "compass/css3";
+@import "animations";
+
+@include keyframes(inlove){
+	0%{
+		@include translate(-3px,0);
+	}
+	10%{
+		@include translate(-5px,-5px);
+	}
+	20%{
+		@include translate(-4px, -6px);
+	}
+	30%{
+		@include translate(0px, -4px);
+	}
+	40%{
+		@include translate(4px, -6px);
+	}
+	50%{
+		@include translate(5px,-5px);
+	}
+	60%{
+		@include translate(3px,0);
+	}
+	90%{
+		@include translate(0,4px);
+	}
+	100%{
+    @include translate(-3px,0);
+	}
+}
+
+@include keyframes(awesome){
+	0%{
+		@include transform(rotateX(0deg) rotateY(0deg) scale(1));
+		background: #06c;
+	}
+	50%{
+		@include transform(rotateX(90deg) rotateY(90deg)  scale(1.1));
+		background: #FFD14D;
+	}
+	100%{
+		@include transform(rotateX(180deg) rotateY(180deg) scale(1));
+		background: #06c;
+	}
+}
+
+.title-heart{
+	display: inline-block;
+	@include animation(inlove, 1s, infinite, .5s);
+}
+
+.hover-demo{
+	width: 200px;
+	height: 200px;
+	max-height: 200px;
+	display: inline-block;
+	margin: -100px auto 50px;
+	line-height: 0px;
+	font-size: 1px;
+	background: #FFD14D;
+	border-radius: 0;
+	@include transition(all .5s);
+	position: relative;
+	cursor: pointer;
+	border: 0;
+	@include transform(scale(.5) rotate(0deg));
+	&:hover{
+		border-radius: 20%;
+		background: rgb(13, 168, 97);
+		@include transform(scale(.7) rotate(45deg))
+	}
+	&:focus{
+		border-radius: 100%;
+		background: #06c;
+		outline: none;
+		@include transform(scale(1) rotate(180deg));
+	}
+}
+
+.demo-direct{
+	@include transition(all 1s);
+	padding: 20px;
+	background: #FFD14D;
+	&:hover{
+		padding: 100px;
+		background: #06c;
+	}
+}
+
+.demo-overwrite{
+	@include transition(all .5s);
+	padding: 20px;
+	background: rgb(13, 168, 97);
+	&:hover{
+		padding: 100px;
+		background: #06c;
+		@include transition(all 1s);
+	}
+}
+
+.demo-dedicated{
+	@include transition(all .5s);
+	padding: 50px;
+	background: #06c;
+}
+
+.awesome{
+	@include animation(awesome, 1s, 2, 0);
+}
