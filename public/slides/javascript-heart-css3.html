@@ -309,7 +309,21 @@ listen(els, "click", function(e){
       <h2>Applying styles directly</h2>
     </hgroup>
     <article class=smaller>
-      <p>asdasdfas asdf asdf asd fa sdf asdf asd fa sdf asd fa sdf asd f</p>
+      <p>Not all animations should behave the same way on all devices, javascript can help</p>
+      <pre class=prettyprint data-lang=javascript>var top = ((window.innerwidth > window.innerHeight? ?
+  window.innerWidth :
+  window.innerHeight) * .3 ;
+var ele = document.getElementById("inTheMiddle");
+
+setTimeout(function(){
+  <b>ele.style.transform = "translate(0, " + top + "px)";</b>
+},500);
+      </pre>
+      <p>CSS</p>
+      <pre class=prettyprint data-lang=css>#inTheMiddle{
+  transition: transform .5s ease-in;
+}</pre>
+    <p><b>Benefits:</b> Dynamic, light redraw depending on style property</p>
     </article>
   </slide>
 
@@ -318,8 +332,21 @@ listen(els, "click", function(e){
       <h2>Timing</h2>
     </hgroup>
     <article class=smaller>
-      <p>asdasdfas asdf asdf asd fa sdf asdf asd fa sdf asd fa sdf asd f</p>
+      <p>You can settup some cool timing mechanisms to animate to</p>
+      <pre class=prettyprint data-lang=javascript>var ele = document.getElementById("random");
+
+setInterval(function(){
+  var randX = Math.round(Math.random() * 100);
+  var randY = Math.round(Math.random() * 100);
+  ele.style.webkitTransform = "translate(" + randX + "px, " + randY + "px)";
+},500);
+      </pre>
+      <p>CSS ~ is pretty much the same</p>
+      <pre class=prettyprint data-lang=css>#random{
+  transition: transform .5s ease-in-out;
+}</pre>
     </article>
+    <div id="random"></div>
   </slide>
 
   <slide>
@@ -327,21 +354,37 @@ listen(els, "click", function(e){
       <h2>Advancing states</h2>
     </hgroup>
     <article class=smaller>
-      <p>asdasdfas asdf asdf asd fa sdf asdf asd fa sdf asd fa sdf asd f</p>
-    </article>
-  </slide>
+      <p>You can also advance states that cannot be handled by css. Eg: Clicks, Double Clicks, Scroll Positions</p>
+      <pre class=prettyprint data-lang=javascript>var adv = document.getElementById("advancing");
+var ogClass = adv.className;
 
+adv.addEventListener("click", function(e){
+  var classNames = e.target.className;
+
+  if(!/first/g.test(classNames)){
+    adv.className = classNames + " first";
+  }else if(!/second/g.test(classNames)){
+    adv.className = classNames + " second";
+  }else if(!/third/g.test(classNames)){
+    adv.className = classNames + " third";
+  }else{
+    adv.className = ogClass;
+  }
+})
+      </pre>
+    </article>
+    <div id="advancing"></div>
+  </slide>
   <slide>
     <hgroup>
       <h2>We can do alot more</h2>
     </hgroup>
     <article class="flexbox vleft">
-      <p>doing cool things with the project keeps my interest in the project. Keeps me pushing quality code to project and keep me satisfied with the progress of the project.</p>
-      <p></p>
-      <h1 color=green>I try to deploy a new version everyday!</h1>
+      <p>Do not assume you can't do an certain animation with this method, unless your on IE. Just try to make it happen.</p>
+      <pre class="codepen" data-height="300" data-type="result" data-href="zbqLu" data-user="jacoblwe20" data-safe="true"><code></code><a href="http://codepen.io/jacoblwe20/pen/zbqLu">Check out this Pen!</a></pre>
+<script async src="http://codepen.io/assets/embed/ei.js"></script>
     </article>
   </slide>
-
   <slide class="thank-you-slide segue nobackground">
     <article class="flexbox vleft auto-fadein">
       <h2>&lt;Questions?&gt;</h2>
