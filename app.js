@@ -65,6 +65,7 @@ app.get('/v1/contact-info', routes.api.contact);
 app.get('/v1/about', routes.api.about);
 app.get('/v1/twitter', routes.api.twitter);
 app.get('/v1/blog', routes.api.blog);
+app.get('/v1/slides', routes.api.slides);
 app.get('/v1/404', routes.api._404);
 
 http.createServer(app).listen(app.get('port'), function(){

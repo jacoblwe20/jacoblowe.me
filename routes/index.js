@@ -53,11 +53,11 @@ exports.api = {
 					}
 				},
 				{
-					name : "Riverside.io",
-					link : "http://riverside.io",
-					icon : "icon-suitcase",
+					name : "FoothillsJS",
+					link : "http://foothillsjs.nodejitsu.com/",
+					icon : "icon-code",
 					desc : {
-						p : 'Where people from all over the Inland Empire come to learn how to code, design & ship web apps.'
+						p : 'We are a group of web technology advocates, that are trying to push the web forward and to inspire people to investing in the web.'
 					}
 				}
 			],
@@ -292,5 +292,25 @@ exports.api = {
 			],
 			success : true
 		});
+	},
+	slides : function(req, res){
+		fs.readdir(__dirname + "/../public/slides/", function(err, files){
+			console.log(__dirname + "/../public/slides/");
+			var html = [];
+			for(var i = 0; i < files.length; i += 1){
+				if(files[i].split(/\./).pop() === "html"){
+					var split = files[i].split(/\./);
+					html.push({
+						name : split[0].replace(/(\-|\_)/g, " "),
+						link : "/slides/" + files[i],
+						icon : "icon-layout"
+					})
+				}
+			};
+			res.json({
+				title : "Slides",
+				results : html
+			});
+		})
 	}
 };
