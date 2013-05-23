@@ -93,6 +93,22 @@ exports.api = {
 					}
 				},
 				{
+					name : "Distance.js",
+					link : "https://github.com/jacoblwe20/distance.js",
+					icon : "icon-road",
+					desc : {
+						p : "Distance.js is a library that help calculate distances between two points"
+					}
+				},
+				{
+					name : "Tubes.js",
+					link : "https://github.com/jacoblwe20/tubes.js",
+					icon : "icon-beer",
+					desc : {
+						p : "Tubes.js is a XMLHTTPRequest manager, it allow you to pause all and ressume ajax calls and much more..."
+					}
+				},
+				{
 					name : "Bowler",
 					link : "http://jacoblwe20.github.com/bowler/",
 					icon : "icon-beer",
