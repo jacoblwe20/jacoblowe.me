@@ -15,8 +15,13 @@ var express = require('express')
 
 var app = express();
 
+ app.locals.title = "Jacob Lowe";
+      app.locals.image = "https://si0.twimg.com/profile_images/3271414482/369578ab95444f013b7a81968e028233_bigger.jpeg";
+      app.locals.location = "";
+      app.locals.update = "<small>Twitter has changed their api yeah! *sarcasm*</small>";
+
 //Make this cachable and hold on to tweets without haveing to make a seperate request
-request('http://api.twitter.com/1/statuses/user_timeline.json?count=1&screen_name='+twt_u, function(error, response, body){
+request('http://api.twitter.com/1/statuses/user_timeline.json?count=1&screen_name=' + twt_u, function(error, response, body){
   if(error){
       console.log(error);
       callback(error);
