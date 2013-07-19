@@ -221,7 +221,7 @@
           });
         };
         this.construct = function(){
-          var temp = '<i class="icon-twitter blue"></i><div class="triangle"></div><p>{{{status}}}</p>';
+          var temp = '<i class="icon-github blue"></i><div class="triangle"></div><p>{{{status}}}</p>';
           var statusUpdate = $('<div/>').addClass('status-update');
           this.status_bub = statusUpdate.html(Mustache.render(temp, {status : this.linkify(this.status)}));
           this.container.prepend(this.status_bub).css({display:'block', position: 'relative'});

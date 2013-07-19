@@ -9,36 +9,58 @@ var express = require('express')
   , path = require('path')
   , request = require('request')
   , moment = require('moment')
-  , twt_u = 'jacob2dot0';
+  , twt_u = 'jacob2dot0'
+  , githubUser = 'jacoblwe20';
 
 
 
 var app = express();
 
- app.locals.title = "Jacob Lowe";
-      app.locals.image = "https://si0.twimg.com/profile_images/3271414482/369578ab95444f013b7a81968e028233_bigger.jpeg";
-      app.locals.location = "";
-      app.locals.update = "<small>Twitter has changed their api yeah! *sarcasm*</small>";
+app.locals.title = "Jacob Lowe";
+app.locals.image = "https://si0.twimg.com/profile_images/3271414482/369578ab95444f013b7a81968e028233_bigger.jpeg";
+app.locals.location = "";
+app.locals.update = "<small>Twitter has changed their api yeah! *sarcasm*</small>";
 
-//Make this cachable and hold on to tweets without haveing to make a seperate request
-request('http://api.twitter.com/1/statuses/user_timeline.json?count=1&screen_name=' + twt_u, function(error, response, body){
-  if(error){
-      console.log(error);
-      callback(error);
-  }else if(response.statusCode == 200){
-      var result = JSON.parse(body)[0],
-        user = result.user;
 
-      console.log('recieved information');
-      var date = moment(result.created_at, "ddd MMM DD HH:mm:ss Z YYYY");
+request('https://api.github.com/users/' + githubUser + '/events', function( err, res, body ){
+  if( !err && res.statusCode == 200 ){
+    var 
+    event = JSON.parse( body )[ 5 ],
+    actor = event.actor,
+    payload = event.payload,
+    date = moment(event.created_at, "YYYY-MM-DD HH:mm:ss ");
+    // date = moment(event.created_at, "ddd MMM DD HH:mm:ss Z YYYY");
+    //"2013-07-17T13:51:08Z"
 
-      app.locals.title = user.name;
-      app.locals.image = user.profile_image_url;
-      app.locals.location = user.location;
-      app.locals.update = "<small>" +
-        date.fromNow() +
-        "</small><br />" +
-        result.text;
+    app.locals.update = "<small>" +
+      date.fromNow() +
+      "</small><br />";
+
+    if( event.type === "FollowEvent" ){
+      var target = payload.target;
+      app.locals.update += 'Started following ' + target.html_url;
+    }
+
+    if( event.type === "IssueCommentEvent" ){
+      var comment = payload.comment;
+      app.locals.update += comment.body + " " + comment.url;
+    }
+
+    if( event.type === "WatchEvent" ){
+      var repo = event.repo;
+      app.locals.update += "Started watching " + repo.url;
+    }
+
+    if( event.type === "PushEvent" ){
+      var commit = payload.commits[ 0 ];
+      app.locals.update += commit.message + " " + commit.url;
+    }
+
+
+    app.locals.update += "<br/><br/><small>on Github</small>"
+
+    app.locals.image = actor.avatar_url;
+    //console.log( events.length )
 
   }
 });
