@@ -9,40 +9,15 @@ var express = require('express')
   , path = require('path')
   , request = require('request')
   , moment = require('moment')
+  , gravatar = require('gravatar')
   , twt_u = 'jacob2dot0';
-
-
 
 var app = express();
 
- app.locals.title = "Jacob Lowe";
-      app.locals.image = "https://si0.twimg.com/profile_images/3271414482/369578ab95444f013b7a81968e028233_bigger.jpeg";
-      app.locals.location = "";
-      app.locals.update = "<small>Twitter has changed their api yeah! *sarcasm*</small>";
-
-//Make this cachable and hold on to tweets without haveing to make a seperate request
-request('http://api.twitter.com/1/statuses/user_timeline.json?count=1&screen_name=' + twt_u, function(error, response, body){
-  if(error){
-      console.log(error);
-      callback(error);
-  }else if(response.statusCode == 200){
-      var result = JSON.parse(body)[0],
-        user = result.user;
-
-      console.log('recieved information');
-      var date = moment(result.created_at, "ddd MMM DD HH:mm:ss Z YYYY");
-
-      app.locals.title = user.name;
-      app.locals.image = user.profile_image_url;
-      app.locals.location = user.location;
-      app.locals.update = "<small>" +
-        date.fromNow() +
-        "</small><br />" +
-        result.text;
-
-  }
-});
-
+app.locals.title = "Jacob Lowe";
+app.locals.image = gravatar.url("jacoblowe2.0@gmail.com", { s : 45 });
+app.locals.location = "";
+app.locals.update = "<small>Ouch!</small>";
 app.locals.tagline = "Expanding the nature of the web.";
 
 app.configure(function(){

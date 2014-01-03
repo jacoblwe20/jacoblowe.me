@@ -6,6 +6,8 @@
 
 var request = require('request'),
 	moment = require('moment'),
+	Github = require('github'),
+	github = new Github({ version : '3.0.0' }),
 	fs = require('fs'),
 	tw_user = 'jacob2dot0',
 	linkify = function(str){
@@ -65,91 +67,23 @@ exports.api = {
 		});
 	},
 	projects : function(req, res){
-		res.json({
-			title : 'Projects & Plugins',
-			results : [
-				{
-					name : "ParkingLot.io",
-					link : "http://parkinglot.io",
-					icon : "icon-road",
-					desc : {
-						p : "ParkingLot.io is a project that was spawned from an idea at a <a href=\"riverside.io\" />riverside.io</a> meeting to make a app for free parking. I got working on it and ended up creating a full blown web app out of it. Its in beta for now but try it out sign up and contribute, it helps a 'lot'"
-					}
-				},
-				{
-					name : "Zoomy jQuery Plugin",
-					link : "http://zoomy.me",
-					icon : "icon-zoom",
-					desc : {
-						p : 'Zoomy is a quick and easy plugin that will zoom into a picture. Zoomy is a flexible zoom plugin and can be used with either, two copies of the same image, or one image linked to its self.'
-					}
-				},
-				{
-					name : "Mangos",
-					link : "https://github.com/jacoblwe20/mangos",
-					icon : "icon-mongo",
-					desc : {
-						p : "Mangos.js is a simple <a href=\"http://nodejs.org\">Nodejs</a> module to make MongoDB syntax CRUD. It uses and exposes controls straight from MongoDB's Native driver"
-					}
-				},
-				{
-					name : "Distance.js",
-					link : "https://github.com/jacoblwe20/distance.js",
-					icon : "icon-road",
-					desc : {
-						p : "Distance.js is a library that help calculate distances between two points"
-					}
-				},
-				{
-					name : "Tubes.js",
-					link : "https://github.com/jacoblwe20/tubes.js",
-					icon : "icon-beer",
-					desc : {
-						p : "Tubes.js is a XMLHTTPRequest manager, it allow you to pause all and ressume ajax calls and much more..."
-					}
-				},
-				{
-					name : "Bowler",
-					link : "http://jacoblwe20.github.com/bowler/",
-					icon : "icon-beer",
-					desc : {
-						p : "Bowler.js is a Model / View framework for the gentleman in you."
-					}
-				},
-				{
-					name : 'Redeyeoperations.com',
-					link : 'http://redeyeoperations.com',
-					icon : 'icon-layout',
-					desc : {
-						p : 'Redeyeoperations.com is a blog that a write for and run. This site also is a harbor for some of my older design and development work.'
-					}
-				},
-				{
-					name : "Notify jQuery Plugin",
-					link : "http://redeyeoperations.com/plugins/Notify",
-					icon : "icon-bell",
-					desc : {
-						p : 'Notify is a simple notification plugin that is easly acessable and customizable. There is support for many thing like buttons and closing.'
-					}
-				},
-				{
-					name : "Zoomy Wordpress Plugin",
-					link : "http://zoomy.me/wordpress.html",
-					icon : "icon-plugin",
-					desc : {
-						p : 'Zoomy Wordpress Plugin is a plugin built for Wordpress that allows you to use Zoomy inside of your blog'
-					}
-				},
-				{
-					name : "Scrollimate jQuery Plugin",
-					link : "http://redeyeoperations.com/plugins/Scrollimate",
-					icon : "icon-scroll",
-					desc : {
-						p : 'Scrollimate is a plugin that will animate elements on the page according to the position of the sidebar. It is current still in beta.'
-					}
-				}
-			],
-			success : true
+		// just fetch from github
+		github.repos.getFromUser({
+			type : 'owner',
+			sort : 'created',
+			user : 'jacoblwe20'
+		}, function ( err, repos ) {
+			if ( err ) return res.json({ error : err, success : false });
+			repos.forEach(function( repo, index ){
+				repos[index].desc = { p : repo.description };
+				if ( repo.fork ) repos[ index ] = null;
+			});
+			repos = repos.filter(function( n ){ return n;});
+			res.json({
+				title : 'Projects',
+				results : repos,
+				success : true
+			})
 		});
 	},
 	contact : function(req, res){

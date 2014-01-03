@@ -256,7 +256,7 @@
   var pageName = cookies().jar('__p__');
   var profile = $('.profile');
   var tweet = profile.find('b').data('update');
-  var status = new Status(profile, tweet);
+  //var status = new Status(profile, tweet);
 
   console.log(pageName);
 
@@ -267,9 +267,9 @@
     pageName = "about";
   };
   content = new page(pageName, content, items);
-  status.onClick = function(){
-    content.get("twitter");
-  };
+  // status.onClick = function(){
+  //   content.get("twitter");
+  // };
   content.onNavigate = function(){
     status.hide();
   };
