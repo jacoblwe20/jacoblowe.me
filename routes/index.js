@@ -73,9 +73,11 @@ exports.api = {
 			sort : 'created',
 			user : 'jacoblwe20'
 		}, function ( err, repos ) {
+			console.log( repos );
 			if ( err ) return res.json({ error : err, success : false });
 			repos.forEach(function( repo, index ){
 				repos[index].desc = { p : repo.description };
+				repos[index].link = repo.html_url;
 				if ( repo.fork ) repos[ index ] = null;
 			});
 			repos = repos.filter(function( n ){ return n;});
