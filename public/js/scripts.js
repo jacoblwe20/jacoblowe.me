@@ -8,8 +8,7 @@
  *
  */
 
-
- (function($, exports){
+(function($, exports){
 
   var Cookies = function(){
     if(!(this instanceof Cookies)){
@@ -27,7 +26,7 @@
 
   exports.cookies = Cookies;
 
- }(jQuery, this));
+}(jQuery, this));
 
 
 (function($, exports){
@@ -182,73 +181,6 @@
 
 }(jQuery, this));
 
-
-
-(function($, exports){
-
-  var container = $('.profile'),
-    status = container.find('b').data('update');
-    StatusUpdate = function(container, status){
-
-        this.status = status;
-        this.container = container;
-
-        this.show = function(){
-          this.status_bub.addClass('show');
-        };
-
-        this.hide = function(){
-          this.status_bub.removeClass('show');
-        };
-
-        this.attach = function(){
-          var that = this;
-          this.container.on("click", ".icon-twitter", function(){
-            if(that.onClick) that.onClick();
-            that.hide();
-          });
-        };
-
-        this.linkify = function(str){
-          return str.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
-            return url.link(url);
-          }).replace(/[@]+[A-Za-z0-9-_]+/g, function(u) {
-            var username = u.replace("@","")
-            return u.link("http://twitter.com/"+username);
-          }).replace(/[#]+[A-Za-z0-9-_]+/g, function(t) {
-            var tag = t.replace("#","%23")
-            return t.link("http://search.twitter.com/search?q="+tag);
-          });
-        };
-        this.construct = function(){
-          var temp = '<i class="icon-twitter blue"></i><div class="triangle"></div><p>{{{status}}}</p>';
-          var statusUpdate = $('<div/>').addClass('status-update');
-          this.status_bub = statusUpdate.html(Mustache.render(temp, {status : this.linkify(this.status)}));
-          this.container.prepend(this.status_bub).css({display:'block', position: 'relative'});
-          this.events();
-        };
-        this.events = function(){
-          var that = this;
-          that.container.on('click', 'b', function(){
-            $(this).find('img').removeClass('shake');
-            if(that.status_bub.hasClass('show')){
-              that.hide();
-            }else{
-              that.show();
-            }
-          });
-          this.attach();
-        };
-        this.construct();
-     };
-
-     exports.Status = StatusUpdate;
-     
-     //new StatusUpdate(container, status);
-
-
-}(jQuery, this));
-
 (function($, exports){
 
   var content = $('.content');
@@ -257,21 +189,19 @@
   var profile = $('.profile');
   var tweet = profile.find('b').data('update');
   //var status = new Status(profile, tweet);
-
-  console.log(pageName);
-
-  if(pageName == "undefined" || 
-      !(typeof pageName === "string") || 
-      pageName === "" ||
-      pageName === "null"){
+  if ( pageName == "undefined" || 
+    !(typeof pageName === "string") || 
+    pageName === "" ||
+    pageName === "null"
+  ) {
     pageName = "about";
-  };
+  }
   content = new page(pageName, content, items);
   // status.onClick = function(){
   //   content.get("twitter");
   // };
   content.onNavigate = function(){
-    status.hide();
+    //status.hide();
   };
 
 }(jQuery, this));

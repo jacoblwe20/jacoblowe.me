@@ -2,48 +2,56 @@
 @import 'nib'
 @import './icons.css'
 
-blue = #08c
+blue = #86c5bc
 green = #093
-yellow = #f89b00
-red = #DD4B39
-grey = #999
+yellow = #fed8a7
+orange = #fdbe57
+darkOrange = #e38a38
+grey = #555
 lightGrey = #F3F3F3
 
-@keyframes shake {
+@keyframes loading {
   0%{
-    transform translate(0, 0)
-  }
-  45%{
-    transform translate(0, 0)
+    border-width 4px
+    border-color yellow
+    transform translate( 0, 0 )
   }
   50%{
-    transform translate(0, -2px)
-  }
-  55%{
-    transform translate(0, 2px)
-  }
-  60%{
-    transform translate(0, -2px)
-  }
-  65%{
-    transform translate(0, 2px)
+    border-width 8px
+    border-color rgba( yellow, .5 )
+    transform translate( -4px, -4px )
   }
   100%{
-    transform translate(0, 0)
+    border-width 4px
+    border-color yellow
+    transform translate( 0, 0 )
   }
 }
 
+p, 
+h1,
+h3,
+h4,
+h5,
+h6
+li
+  color #555
+
 body
-  background lightGrey url('../img/patterns/subtle_dots.png')
+  background white
   padding 20px 0 100px
   font 14px  'Open Sans', Helvetica, Arial, sans-serif
   text-shadow 0px 1px 2px rgba(255,255,255,1)
   overflow-y scroll
   position relative
 
+  a 
+    color blue
+    &:hover 
+      color darken( blue, 15 )
+
   // general styles
   h1
-    color #444
     margin-top 30px
 
   h2,.item-title
@@ -60,13 +68,13 @@ body
     color blue
 
   .green
-    color green
+    color darkOrange
 
   .yellow
     color yellow
 
   .red
-    color red
+    color orange
 
   .grey
     color grey
@@ -83,14 +91,14 @@ body
   .modules.navigation 
     z-index 2
     min-width 100%
-    background #fff
+    background white
     position fixed
     left 0
     right 0
     text-align center
     bottom -1px
-    box-shadow 0px -1px 2px rgba(0,0,0,.1)
-    border-top 2px solid lightGrey
+    //box-shadow 0px -1px 2px rgba(0,0,0,.1)
+    border-top 2px solid yellow
     left 0
     right 0
     &::before
@@ -123,7 +131,7 @@ body
       -moz-box-flex 1
       flex 1
       padding 10px 0
-      border-top 0px solid lightGrey
+      border-top 0px solid orange
       transition(.3s ease-in .2s)
       &.current
         border-top-width 5px
@@ -134,7 +142,6 @@ body
             color blue
             margin 0
       h4
-        color #444
         transition(.3s ease-in .2s)
         i
           line-height 28px
@@ -160,11 +167,13 @@ body
         max-width 48px
         width 100%
         border-radius 100%
+        border 4px solid lightGrey
         margin 0 0 15px 0
         cursor pointer
-        &.shake
-          animation-duration 3s
-          animation-name shake
+        box-sizing border-box
+        &.loading
+          animation-duration .5s
+          animation-name loading
           animation-iteration-count infinite
       .status-update
         z-index 5
@@ -222,6 +231,7 @@ body
       position relative
       overflow hidden
       transition height .5s linear
+      border-left 1px solid lightGrey
       section
         min-width 100%
         z-index 1
@@ -248,12 +258,12 @@ body
             padding 10px 0
             font-size 18px
             line-height 22px
-            border-bottom 1px solid #ddd
+            border-bottom 1px solid lightGrey
             i
               margin 3px 10px
               background-image none
           .itemhover i
-            color #f89b00
+            color grey
             transition(.3s ease-in .2s)
           .description
             margin 20px 20px 10px 20px
@@ -271,14 +281,14 @@ body
     .modules.navigation
       top 0px
       bottom auto!important
-      box-shadow 0px 1px 2px rgba(0,0,0,.1)
+      //box-shadow 0px 1px 2px rgba(0,0,0,.1)
       border-top 0
-      border-bottom 2px solid lightGrey
+      border-bottom 2px solid yellow
       &::before
         bottom auto
         top -21px 
       .item
-        border-bottom 0px solid lightGrey
+        border-bottom 0px solid yellow
         height 38px
         &.current
           border-bottom-width 5px

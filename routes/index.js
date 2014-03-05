@@ -36,16 +36,18 @@ exports.index = function(req, res){
 
 
 exports.api = {
-	page : function(req, res){
-
-	},
-	twitter : function(req, res){
-
-	},
 	groups : function(req, res){
 		res.json({
 			title : 'Groups & Meetups',
 			results : [
+				{
+					name : "Riverside.io",
+					link : "http://riverside.io",
+					icon : "icon-suitcase",
+					desc : {
+						p : 'This is a co-working spot in downtown Riverside, I am one of the founding memebers and am very active with Riverside.io\'s OSS.'
+					}
+				},
 				{
 					name : "riverside.js",
 					link : "http://riversidejs.org",
@@ -68,12 +70,20 @@ exports.api = {
 	},
 	projects : function(req, res){
 		// just fetch from github
+		console.log( typeof req.__repos );
+		if ( req.__repos ) {
+			console.log('cache hit')
+			return res.json({
+				title : 'Projects',
+				results : req.__repos,
+				success : true
+			})
+		}
 		github.repos.getFromUser({
 			type : 'owner',
 			sort : 'created',
 			user : 'jacoblwe20'
 		}, function ( err, repos ) {
-			console.log( repos );
 			if ( err ) return res.json({ error : err, success : false });
 			repos.forEach(function( repo, index ){
 				repos[index].desc = { p : repo.description };
@@ -116,59 +126,11 @@ exports.api = {
 					name : "ping@jacoblowe.me",
 					link : "mailto:ping@jacoblowe.me",
 					icon : "icon-mail"
-					// desc : {
-					// 	p : '<input type="text" placeholder="email@host.com"><br><input class="btn btn-alt" type="submit" value="submit"/>'
-					// }
 				}
 			],
 			success : true
 		});
 
-	},
-	twitter : function(req, res){
-		request('http://api.twitter.com/1/statuses/user_timeline.json?count=10&screen_name='+tw_user, function(error, response, body){
-        if(error){
-            console.log(error);
-            callback(error);
-        }else if(response.statusCode == 200){
-
-
-            var twts = JSON.parse(body),
-            	compiled = '<ul>';
-            	newRes = {
-            		name : 'Follow Me',
-            		link : 'https://twitter.com/#!/' + tw_user,
-            		icon : 'icon-twitter'
-            	};
-
-            for(var i in twts){
-            	//Sun Mar 10 19:38:32 +0000 2013
-            	var date = moment(twts[i].created_at, "ddd MMM DD HH:mm:ss Z YYYY");
-
-            	compiled += '<li><small>' +
-            	 date.fromNow() +
-            	 '</small><br /><p>'+ 
-            	 linkify(twts[i].text) + 
-            	 '</p><small><a href=https://twitter.com/' + 
-            	 tw_user + 
-            	 '/status/' + 
-            	 twts[i].id + 
-            	 '>details</a></small>';
-            		
-            }
-
-            compiled += '</ul>';
-
-            newRes.desc = {
-            	p : compiled
-            }
-
-            res.json({success: true, title : "Twitter Feed", results : newRes});
-
-
-        }
-
-    });
 	},
 	about : function(req, res){
 		res.json({
