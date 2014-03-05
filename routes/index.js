@@ -55,14 +55,6 @@ exports.api = {
 					desc : {
 						p : 'Meetup with local Javascript Developers in the Inland Empire. We are a group of Riverside tech enthusiast, and the group is growing larger everyday. Come join us and together lets learn to build and hack javascript.'
 					}
-				},
-				{
-					name : "FoothillsJS",
-					link : "http://foothillsjs.nodejitsu.com/",
-					icon : "icon-code",
-					desc : {
-						p : 'We are a group of web technology advocates, that are trying to push the web forward and to inspire people to investing in the web.'
-					}
 				}
 			],
 			success : true
@@ -70,9 +62,7 @@ exports.api = {
 	},
 	projects : function(req, res){
 		// just fetch from github
-		console.log( typeof req.__repos );
 		if ( req.__repos ) {
-			console.log('cache hit')
 			return res.json({
 				title : 'Projects',
 				results : req.__repos,
@@ -88,6 +78,7 @@ exports.api = {
 			repos.forEach(function( repo, index ){
 				repos[index].desc = { p : repo.description };
 				repos[index].link = repo.html_url;
+				repos[index].icon = "icon-github";
 				if ( repo.fork ) repos[ index ] = null;
 			});
 			repos = repos.filter(function( n ){ return n;});
@@ -167,30 +158,6 @@ exports.api = {
 		    }
 		  ], success: true});
 	},
-	blog : function(req, res){
-		request('http://redeyeoperations.com/?json=1&count=1', function(error, response, body){
-
-			var posts = JSON.parse(body).posts;
-				output = [];
-
-			for(var i in posts){
-				var post = posts[i];
-
-				output.push({
-					name : post.title_plain,
-					link : post.url,
-					icon : 'icon-share-alt',
-					desc : {
-						p : post.content
-					}
-				})
-
-			}
-
-			res.json({results : output, success : true});
-
-		})
-	},
 	_404 : function(req, res){
 		res.json({
 			title : '404 Page Not Found!',
@@ -209,7 +176,6 @@ exports.api = {
 	},
 	slides : function(req, res){
 		fs.readdir(__dirname + "/../public/slides/", function(err, files){
-			console.log(__dirname + "/../public/slides/");
 			var html = [];
 			for(var i = 0; i < files.length; i += 1){
 				if(files[i].split(/\./).pop() === "html"){

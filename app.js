@@ -72,7 +72,6 @@ github.repos.getFromUser({
     if ( repo.fork ) repos[ index ] = null;
   });
   repos = repos.filter(function( n ){ return n;});
-  console.log( 'cacheing')
   __repos = repos;
     
 });

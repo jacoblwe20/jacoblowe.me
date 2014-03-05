@@ -242,13 +242,13 @@ body
         top 0
         left 0
         opacity 0
-        transform scale(1.1)
         transform-origin top left
+        transform translate( -100%, 0 ) scale( 1 )
         transition transform .5s linear, opacity .5s linear
         &.current
           z-index 2
-          transition transform .5s linear .5s, opacity .5s linear .5s
-          transform scale(1)
+          transition transform .5s linear .4s, opacity .5s linear .5s
+          transform translate( 0, 0 ) scale( 1 )
           opacity 1
         .content-items
           list-style-type  none
@@ -272,7 +272,7 @@ body
             margin 0
             padding 0 20px 20px 20px
             li
-              border-bottom 1px solid #ccc
+              border-bottom 1px solid lightGrey
               padding 10px 0
 
 @media (min-width : 980px)
