@@ -81,7 +81,7 @@
     this.sections = [];
     this.pushState = ("pushState" in history) ? true : false;
     this.nav.on("click", function(e){
-      var ele = $(this);  
+      var ele = $( e.target ).closest('.item');  
       var pageName = ele.attr('id');
       e.preventDefault();
       that.get(pageName);
@@ -90,6 +90,10 @@
       }
       if(that.onNavigate) that.onNavigate();
     });
+    window.onpopstate = function ( ) {
+      var pageName = location.pathname.replace('/', '');
+      that.get(pageName);
+    }
 
     this.init();
   };
