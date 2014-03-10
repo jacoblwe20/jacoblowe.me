@@ -92,6 +92,9 @@
     });
     window.onpopstate = function ( ) {
       var pageName = location.pathname.replace('/', '');
+      if ( !pageName ) {
+        pageName = 'about';
+      }
       that.get(pageName);
     }
 
