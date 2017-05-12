@@ -12,13 +12,13 @@
   },
   "dependencies": {
     "express": "3.0.0rc4",
-    "jade": "0.28.1",
-    "request": "2.10.0",
-    "connect-assets": "2.1.5",
-    "stylus": "0.32.0",
-    "nib": "0.9.1",
-    "moment": "2.0.0",
-    "gravatar": "1.0.6",
-    "github": "0.1.12"
+    "jade": "1.11.0",
+    "request": "2.81.0",
+    "connect-assets": "5.4.0",
+    "stylus": "0.54.5",
+    "nib": "1.1.2",
+    "moment": "2.18.1",
+    "gravatar": "1.6.0",
+    "github": "9.2.0"
   }
 }
